@@ -78,23 +78,36 @@ python YOUR_VisEvent_PATH/GTP_VisEvent.py --trans_folder 0 --source_dir YOUR_Vis
 1. The training path configuration file is located at `SDTrack/lib/train/admin/local.py`.
 2. The testing path configuration file is located at `SDTrack/lib/test/evaluation/local.py`.
 
-## Training FE108
+## Training
 ```
+# FE108
 bash train_tiny_fe108.sh
 bash train_base_fe108.sh
-```
-
-## Training VisEvent
-```
+# VisEvent
 bash train_tiny_visevent.sh
 bash train_base_visevent.sh
-```
-
-## Training FELT
-```
+# FELT
 bash train_tiny_felt.sh
 bash train_base_felt.sh
 ```
+
+## Test
+```
+# FE108
+bash test_tiny_fe108.sh
+bash test_base_fe108.sh
+# VisEvent
+bash test_tiny_visevent.sh
+bash test_base_visevent.sh
+# FELT
+bash test_tiny_felt.sh
+bash test_base_felt.sh
+```
+
+## Evaluation
+1. Download the MATLAB script for evaluation([FE108](https://drive.google.com/file/d/1bGdKCAlE_GX1Bde0hPiiBQNOLDJLQFup/view?usp=sharing), [FELT](https://drive.google.com/file/d/1CqYK8q2mysR2FGZx9GJWY6lzbXSiUXxF/view?usp=sharing) and [VisEvent](https://drive.google.com/file/d/1QgZEMbnJifpSFjnUJIVlL9D3_AeOZWYf/view?usp=sharing)). The evaluation scripts for FELT and VisEvent were provided by [Xiao Wang](https://github.com/wangxiao5791509), while the evaluation script for FE108 was modified by us.
+2. For the three datasets, before evaluation, the test results (including multiple .txt files) need to be copied to the `tracking_results` folder in the corresponding directory. Additionally, the `utils/config_tracker.m` file in the respective folder should be modified. Finally, run the corresponding MATLAB script to generate the evaluation results. It is important to note that before testing AUC, you need to set `ranking_type = AUC`, and before testing PR, you need to set `ranking_type = threshold`. For the FELT dataset, before moving the test results to the `tracking_results` folder, you first need to move the test results to the `processing_data` directory and run `processing_1.py` and `processing_2.py` to correct their format.
+
 
 ## Get the training and inference results.
 ### Weights
