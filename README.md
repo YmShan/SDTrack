@@ -6,7 +6,7 @@ or Or manually install the environment using `requirement.yml`.
 ## Data Prepare
 
 ## Download the pre-trained weights from ImageNet-1K.
-1. Download [SDTrack-Tiny]() and [SDTrack-Base]().
+1. Download [SDTrack-Tiny](https://drive.google.com/file/d/1OcXHCnibEv9F40gw5VwGO90adtE6E0Ik/view?usp=sharing) and [SDTrack-Base](https://drive.google.com/file/d/1maJd0td46oxHACeBk2Vc90a__VyDAeWj/view?usp=sharing).
 2. Create the directory SDTrack/**pretrained_models** and place the two downloaded weight files into this directory.
 
 ## Modify the settings required for training and testing.
@@ -30,3 +30,15 @@ bash train_base_visevent.sh
 bash train_tiny_felt.sh
 bash train_base_felt.sh
 ```
+
+## Get the training and inference results.
+### Weights
+|  | FE108 | FELT | VisEvent |
+|----------|----------|----------|----------|
+| SDTrack-Tiny    |  [link]()  |  [link]()  | [link]()   |
+| SDTrack-Base    | [link]()   | [link]()   | [link]()   |
+### The test results of our method and other methods mentioned in the paper.
+| FE108 | FELT | VisEvent |
+|----------|----------|----------|
+|  [link](https://drive.google.com/file/d/1a1nyrJH-6SNpryxSEYzcZptgbWWO4pV0/view?usp=sharing)  |  [link](https://drive.google.com/file/d/1c98n2EJDDlRIratJRozhkzVENuX--OOf/view?usp=sharing)  | [link](https://drive.google.com/file/d/1Ctll5AfGtjtXnP6HLCtJD3h1Zx4hXcqP/view?usp=sharing)   |
+
