@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=4,5,6 python tracking/train.py --script SDTrack --config SDTrack-tiny-visevent --save_dir ./output --mode multiple --nproc_per_node 3 --use_wandb 0

@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=7 python tracking/test.py SDTrack SDTrack-base-fe108 --dataset eotb --threads 8 --num_gpus 1

@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=4 python tracking/test.py SDTrack SDTrack-tiny-fe108 --dataset eotb --threads 1 --num_gpus 1

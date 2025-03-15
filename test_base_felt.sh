@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=6,7 python tracking/test.py SDTrack SDTrack-base-felt --dataset felt --threads 15 --num_gpus 2
