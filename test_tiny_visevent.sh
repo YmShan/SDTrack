@@ -1,1 +1,1 @@
-CUDA_VISIBLE_DEVICES=4,5,6,7 python tracking/test.py SDTrack SDTrack-tiny-visevent --dataset visevent --threads 30 --num_gpus 4
+CUDA_VISIBLE_DEVICES=0,1,2,3 python tracking/test.py SDTrack SDTrack-tiny-visevent --dataset visevent --threads 30 --num_gpus 4
