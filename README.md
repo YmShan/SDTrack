@@ -1,7 +1,9 @@
 # SDTrack: A Baseline for Event-based Tracking via Spiking Neural Networks
 
 ## Tracker Overview
-[main_pic.pdf](https://github.com/user-attachments/files/19268890/main_pic.pdf)
+<div align="center">
+  <img src="[https://github.com/******/dbscan_clustering_algorithm/blob/master/data/DBSCAN.png](https://github.com/YmShan/SDTrack/blob/main/source/main_pic.pdf)(https://github.com/YmShan/SDTrack/blob/main/source/main_pic.pdf)">
+</div>
 
 
 ## Conda Environment
