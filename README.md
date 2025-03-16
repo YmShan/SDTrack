@@ -1,5 +1,9 @@
 # SDTrack: A Baseline for Event-based Tracking via Spiking Neural Networks
 
+## Tracker Overview
+[main_pic.pdf](https://github.com/user-attachments/files/19268890/main_pic.pdf)
+
+
 ## Conda Environment
 You can download the compressed package of the environment [here](https://drive.google.com/file/d/1bHu7CbM6TiSXNXnMbfj8W-eUNvO_4wyA/view?usp=sharing).
 or Or manually install the environment using `requirement.yml`.
