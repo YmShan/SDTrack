@@ -2,8 +2,9 @@
 
 ## Tracker Overview
 <div align="center">
-  <img src="[https://github.com/******/dbscan_clustering_algorithm/blob/master/data/DBSCAN.png](https://github.com/YmShan/SDTrack/blob/main/source/main_pic.pdf)(https://github.com/YmShan/SDTrack/blob/main/source/main_pic.pdf)">
+  <img src="https://github.com/YmShan/SDTrack/blob/main/source/main_pic.png">
 </div>
+
 
 
 ## Conda Environment
