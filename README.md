@@ -68,13 +68,13 @@ or Or manually install the environment using `requirement.yml`.
 
 4.Run the three scripts：
 ```
-python YOUR_FE108_PATH/GTP_FE108.py --trans_folder 0 --source_dir YOUR_FE108_PATH --target_dir YOUR_FE108_PATH --stack_name inter3_stack_3008 --s_train 0 --e_train 76 --s_test 0 --e_test 32 --stack_amount_1c2c 30 --stack_amount_3c 30 --decay_rate_3c 0.8
+python YOUR_FE108_PATH/GTP_FE108.py --trans_folder 0 --source_dir YOUR_FE108_ROOT_PATH --target_dir YOUR_FE108_ROOT_PATH --stack_name inter1_stack_3008 --s_train 0 --e_train 76 --s_test 0 --e_test 32 --stack_amount_1c2c 30 --stack_amount_3c 30 --decay_rate_3c 0.8
 ```
 ```
-python YOUR_FELT_PATH/GTP_FELT.py --trans_folder 0 --source_dir YOUR_FELT_PATH --target_dir YOUR_FELT_PATH --stack_name inter3_stack_3008 --s_train 0 --e_train 76 --s_test 0 --e_test 32 --stack_amount_1c2c 30 --stack_amount_3c 30 --decay_rate_3c 0.8
+python YOUR_FELT_PATH/GTP_FELT.py --trans_folder 0 --source_dir YOUR_FELT_ROOT_PATH --target_dir YOUR_FELT_ROOT_PATH --stack_name inter1_stack_3008 --s_train 0 --e_train 76 --s_test 0 --e_test 32 --stack_amount_1c2c 30 --stack_amount_3c 30 --decay_rate_3c 0.8
 ```
 ```
-python YOUR_VisEvent_PATH/GTP_VisEvent.py --trans_folder 0 --source_dir YOUR_VisEvent_PATH --target_dir YOUR_VisEvent_PATH --stack_name inter3_stack_3008 --s_train 0 --e_train 76 --s_test 0 --e_test 32 --stack_amount_1c2c 30 --stack_amount_3c 30 --decay_rate_3c 0.8
+python YOUR_VisEvent_PATH/GTP_VisEvent.py --trans_folder 0 --source_dir YOUR_VisEvent_ROOT_PATH --target_dir YOUR_VisEvent_ROOT_PATH --stack_name inter1_stack_3008 --s_train 0 --e_train 76 --s_test 0 --e_test 32 --stack_amount_1c2c 30 --stack_amount_3c 30 --decay_rate_3c 0.8
 ```
 
 ## Download the pre-trained weights from ImageNet-1K.
