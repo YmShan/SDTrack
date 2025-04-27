@@ -20,12 +20,12 @@ DATA:
     SCALE_JITTER: 0
     SIZE: 128
 
-  TRAIN:  # 训练数据设置
-    DATASETS_NAME:  # 训练数据集名称
+  TRAIN:
+    DATASETS_NAME:
       - FELT
-    DATASETS_RATIO:  # 数据集比例
-      - 1  # EOTB数据集的使用比例
-    SAMPLE_PER_EPOCH: 90000  # 每个epoch的样本数量    26000
+    DATASETS_RATIO:
+      - 1
+    SAMPLE_PER_EPOCH: 60000
 
   VAL:
     DATASETS_NAME:
@@ -38,21 +38,21 @@ MODEL:
   EXTRA_MERGER: False
   RETURN_INTER: False
   BACKBONE:
-    TYPE: tiny      # vit_base_patch16_224      spike_driven_transformer
+    TYPE: tiny
     STRIDE: 16
   HEAD:
     TYPE: CENTER
-    NUM_CHANNELS: 256     # tiny 256   Base 512
+    NUM_CHANNELS: 256
 TRAIN:
   BACKBONE_MULTIPLIER: 0.1
   DROP_PATH_RATE: 0.1
-  BATCH_SIZE: 42     #   tiny:  20G-32    24G-42            base:    24G-18
-  EPOCH: 100        # 50    240
-  GIOU_WEIGHT: 2.0      # 1        2.0
-  L1_WEIGHT: 5.0        # 14       5.0
-  GRAD_CLIP_NORM: 0.1   # 1.0      0.1
-  LR: 0.001      # 0.0004       0.00008
-  LR_DROP_EPOCH: 80    # 40    240
+  BATCH_SIZE: 42
+  EPOCH: 300
+  GIOU_WEIGHT: 2.0
+  L1_WEIGHT: 5.0
+  GRAD_CLIP_NORM: 0.1
+  LR: 0.0004
+  LR_DROP_EPOCH: 240
   NUM_WORKER: 16
   OPTIMIZER: ADAMW
   PRINT_INTERVAL: 50
@@ -63,7 +63,7 @@ TRAIN:
   WEIGHT_DECAY: 0.0001
   AMP: False
 TEST:
-  EPOCH: 100
+  EPOCH: 300
   SEARCH_FACTOR: 4.0
   SEARCH_SIZE: 256
   TEMPLATE_FACTOR: 2.0
