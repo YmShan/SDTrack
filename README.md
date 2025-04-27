@@ -111,7 +111,7 @@ bash test_tiny_felt.sh
 bash test_base_felt.sh
 ```
 
-## Before Running SDTrack-Base On FELT Dataset.
+## Before Running SDTrack-Tiny/Base On FELT Dataset.
 1. **Transform Configuration Adjustment** Modify the data augmentation settings in the '/SDTrack/lib/train/base_functions.py' path to:
 ```
 transform_train = tfm.Transform(tfm.ToTensor(), 
