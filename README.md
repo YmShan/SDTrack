@@ -8,8 +8,7 @@
 
 
 ## Conda Environment
-You can download the compressed package of the environment [here](https://drive.google.com/file/d/1bHu7CbM6TiSXNXnMbfj8W-eUNvO_4wyA/view?usp=sharing).
-or Or manually install the environment using `requirement.yml`.
+You can download the compressed package of the environment [here](https://drive.google.com/file/d/1bHu7CbM6TiSXNXnMbfj8W-eUNvO_4wyA/view?usp=sharing). Or manually install the environment using `requirements.yml`.
 
 ## Data Prepare
 1. Download [FE108](https://zhangjiqing.com/dataset/), [FELT](https://github.com/Event-AHU/FELT_SOT_Benchmark) and [VisEvent](https://github.com/wangxiao5791509/VisEvent_SOT_Benchmark).
