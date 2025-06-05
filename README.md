@@ -168,22 +168,22 @@ class Preprocessor(object):
 |  [link](https://drive.google.com/file/d/1Slse96Gu3m0RCpAa0vwZq1nC4iVxAoT9/view?usp=sharing)  |  [link](https://drive.google.com/file/d/1XIXwD7PWk-WUcliqi5DMJzJ4X-jassDt/view?usp=sharing)  | [link](https://drive.google.com/file/d/1By9Wh_L0d8gOxl12_b3T4XaKoOW0CXx1/view?usp=drive_link)   |
 
 ### Handling of errors caused by device-related issues.
-1. 'local-rank' error.
+#### 'local-rank' error.
 Change the code in 'SDTrack/train/run_training.py'
-'''python
+```python
 parser.add_argument('--local_rank', default=-1, type=int, help='node rank for distributed training')
-'''
+```
 to
-'''python
+```python
 parser.add_argument('--local-rank', default=-1, type=int, help='node rank for distributed training')
-'''
+```
 
-2. 'torch.six' Error.
+#### 'torch.six' Error.
 Change the code in 'SDTrack/lib/train/data'
-'''python
+```python
 from torch._six import string_classes
-'''
+```
 to
-'''python
+```python
 string_classes = str
-'''
+```
