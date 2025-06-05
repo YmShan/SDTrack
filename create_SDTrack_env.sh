@@ -83,3 +83,4 @@ echo "****************** Installing timm ******************"
 pip install timm
 pip install torchinfo
 pip install einops
+pip install fvcore
