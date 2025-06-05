@@ -5,7 +5,8 @@ import importlib
 import cv2 as cv
 import torch.backends.cudnn
 import torch.distributed as dist
-
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
 import random
 import numpy as np
 torch.backends.cudnn.benchmark = False
