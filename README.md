@@ -169,7 +169,7 @@ class Preprocessor(object):
 
 ### Handling of errors caused by device-related issues.
 #### 1. 'local-rank' error.
-Change the code in 'SDTrack/train/run_training.py'
+Change the code in 'SDTrack/lib/train/run_training.py'
 ```python
 parser.add_argument('--local_rank', default=-1, type=int, help='node rank for distributed training')
 ```
