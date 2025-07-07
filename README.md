@@ -187,3 +187,13 @@ to
 ```python
 string_classes = str
 ```
+
+#### 2. Frequent warning reports.
+```
+/xxx/SDTrack/lib/train/../../lib/train/data/loader.py:88: UserWarning: An output with one or more elements was resized since it had shape [3145728], which does not match the required output shape [1, 16, 3, 256, 256]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at /opt/conda/conda-bld/pytorch_1720538622298/work/aten/src/ATen/native/Resize.cpp:28.)
+```
+Add the code in the top of '/SDTrack/lib/train/run_training.py'
+```python
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+```
