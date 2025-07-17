@@ -179,7 +179,7 @@ parser.add_argument('--local-rank', default=-1, type=int, help='node rank for di
 ```
 
 #### 2. 'torch.six' Error.
-Change the code in 'SDTrack/lib/train/data'
+Change the code in 'SDTrack/lib/train/data/loader.py'
 ```python
 from torch._six import string_classes
 ```
