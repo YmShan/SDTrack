@@ -11,9 +11,10 @@
 You can download the compressed package of the environment [here](https://drive.google.com/file/d/1bHu7CbM6TiSXNXnMbfj8W-eUNvO_4wyA/view?usp=sharing). Or manually install the environment using `create_SDTrack_env.sh`.
 
 ## Data Prepare
-1. Download [FE108](https://zhangjiqing.com/dataset/), [FELT](https://github.com/Event-AHU/FELT_SOT_Benchmark) and [VisEvent](https://github.com/wangxiao5791509/VisEvent_SOT_Benchmark).
-2. Download the datasets processing scripts for the three datasets ([FE108](https://drive.google.com/file/d/1OXMXYbRsQIoxMujkJ-K3cxdfpRog5Ca7/view?usp=sharing), [FELT](https://drive.google.com/file/d/1SApVrzb90sP_D8wYFOpOMwsmCeOMMXhG/view?usp=sharing) and [VISEVENT](https://drive.google.com/file/d/17zm3HjA6iPLmY0chKRwMYEmxUD1IAosG/view?usp=sharing)).
-3. Place the three scripts in the following paths accordingly:
+1. The processing of the FELT dataset is relatively intricate; thus, we recommend utilizing only the FE108 and VisEvent datasets at this stage. Results on the COESOT dataset will be provided in our forthcoming updates.
+2. Download [FE108](https://zhangjiqing.com/dataset/), [FELT](https://github.com/Event-AHU/FELT_SOT_Benchmark) and [VisEvent](https://github.com/wangxiao5791509/VisEvent_SOT_Benchmark).
+3. Download the datasets processing scripts for the three datasets ([FE108](https://drive.google.com/file/d/1OXMXYbRsQIoxMujkJ-K3cxdfpRog5Ca7/view?usp=sharing), [FELT](https://drive.google.com/file/d/1SApVrzb90sP_D8wYFOpOMwsmCeOMMXhG/view?usp=sharing) and [VISEVENT](https://drive.google.com/file/d/17zm3HjA6iPLmY0chKRwMYEmxUD1IAosG/view?usp=sharing)).
+4. Place the three scripts in the following paths accordingly:
 ```
 ├── FE108
     ├── train
@@ -167,8 +168,19 @@ class Preprocessor(object):
 |----------|----------|----------|
 |  [link](https://drive.google.com/file/d/1Slse96Gu3m0RCpAa0vwZq1nC4iVxAoT9/view?usp=sharing)  |  [link](https://drive.google.com/file/d/1XIXwD7PWk-WUcliqi5DMJzJ4X-jassDt/view?usp=sharing)  | [link](https://drive.google.com/file/d/1By9Wh_L0d8gOxl12_b3T4XaKoOW0CXx1/view?usp=drive_link)   |
 
-### Handling of errors caused by device-related issues.
-#### 1. 'local-rank' error.
+## Citation
+If you use our tracker(SDTrack), Event Aggregation method(GTP), reported experimental results, or any other original content from this work, please cite our paper:
+```
+@article{shan2025sdtrack,
+  title={Sdtrack: A baseline for event-based tracking via spiking neural networks},
+  author={Shan, Yimeng and Ren, Zhenbang and Wu, Haodi and Wei, Wenjie and Zhu, Rui-Jie and Wang, Shuai and Zhang, Dehao and Xiao, Yichen and Zhang, Jieyuan and Shi, Kexin and others},
+  journal={arXiv preprint arXiv:2503.08703},
+  year={2025}
+}
+```
+
+## Handling of errors caused by device-related issues.
+### 1. 'local-rank' error.
 Change the code in 'SDTrack/lib/train/run_training.py'
 ```python
 parser.add_argument('--local_rank', default=-1, type=int, help='node rank for distributed training')
@@ -178,7 +190,7 @@ to
 parser.add_argument('--local-rank', default=-1, type=int, help='node rank for distributed training')
 ```
 
-#### 2. 'torch.six' Error.
+### 2. 'torch.six' Error.
 Change the code in 'SDTrack/lib/train/data/loader.py'
 ```python
 from torch._six import string_classes
@@ -188,7 +200,7 @@ to
 string_classes = str
 ```
 
-#### 3. Frequent warning reports.
+### 3. Frequent warning reports.
 ```
 /xxx/SDTrack/lib/train/../../lib/train/data/loader.py:88: UserWarning: An output with one or more elements was resized since it had shape [3145728], which does not match the required output shape [1, 16, 3, 256, 256]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at /opt/conda/conda-bld/pytorch_1720538622298/work/aten/src/ATen/native/Resize.cpp:28.)
 ```
