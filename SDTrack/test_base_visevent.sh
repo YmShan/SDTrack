@@ -1,1 +1,0 @@
-CUDA_VISIBLE_DEVICES=0,1,2,3 python tracking/test.py SDTrack SDTrack-base-visevent --dataset visevent --threads 30 --num_gpus 4
