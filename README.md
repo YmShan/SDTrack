@@ -2,7 +2,7 @@
   <img src="https://github.com/YmShan/SDTrack/blob/main/source/logo.png">
 </div>
 
-# SDTrack: A Baseline for Event-based Tracking via Spiking Neural Networks
+# SDTrack: A Baseline for Neuromorphic Tracking via Spiking Neural Networks
 
 ## Tracker Overview
 <div align="center">
