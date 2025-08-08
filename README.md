@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://github.com/YmShan/SDTrack/blob/main/source/logo.png">
+</div>
+
 # SDTrack: A Baseline for Event-based Tracking via Spiking Neural Networks
 
 ## Tracker Overview
