@@ -4,7 +4,7 @@
 
 # SDTrack: A Baseline for Neuromorphic Tracking via Spiking Neural Networks
 
-# We have established comprehensive evaluation benchmarks for both event camera-based and spike camera-based tracking methodologies.
+## We have established comprehensive evaluation benchmarks for both event camera-based and spike camera-based tracking methodologies.
 
 For the **event camera** component, please refer to [SDTrack-Event](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Event/readme.md).
 
