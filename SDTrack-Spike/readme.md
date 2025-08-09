@@ -94,7 +94,7 @@ It is noteworthy that since we conduct training only once, the test results from
 
 For SDTrack-Tiny's firing rate and energy consumption calculations, see [Energy_Consumption.py](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Spike/Energy_Consumption.py).
 
-
+For SDTrack: The downloaded weights should be placed in the SDTrack-Spike/output/checkpoints/train/SDTrack/SDTrack-tiny directory. Subsequently, testing can be executed directly.
 
 ## Get the inference results.
 
@@ -103,8 +103,4 @@ For SDTrack-Tiny's firing rate and energy consumption calculations, see [Energy_
 |Tracker|Spike-FE108|Spike-VisEvent|Spike-COESOT|
 |:-:|:-:|:-:|:-:|
 |SDTrack-Tiny|[Link](https://drive.google.com/file/d/1mdA4pKtX4AOY4EzsRnlgO3dX-l1mUh8K/view?usp=sharing)|[Link](https://drive.google.com/file/d/1GVKxlTXcSRynsSlSVfu3mpOjCTXz_JVj/view?usp=sharing)|[Link](https://drive.google.com/file/d/1sB1ziRP7QEioZayfWuEn54VgYfE8MXRY/view?usp=sharing)|
-
-
-
-The downloaded weights should be placed in the SDTrack-Spike/output/checkpoints/train/SDTrack/SDTrack-tiny directory. Subsequently, testing can be executed directly.
 
