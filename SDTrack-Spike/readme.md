@@ -2,70 +2,54 @@
 You can download the compressed package of the environment [here](https://drive.google.com/file/d/1bHu7CbM6TiSXNXnMbfj8W-eUNvO_4wyA/view?usp=sharing). Or manually install the environment using [create_SDTrack_env.sh](https://github.com/YmShan/SDTrack/blob/main/create_SDTrack_env.sh)
 
 ## Data Prepare
-1. The processing of the FELT dataset is relatively intricate; thus, we recommend utilizing only the FE108 and VisEvent datasets at this stage. Results on the COESOT dataset will be provided in our forthcoming updates.
-2. Download [FE108](https://zhangjiqing.com/dataset/), [FELT](https://github.com/Event-AHU/FELT_SOT_Benchmark) and [VisEvent](https://github.com/wangxiao5791509/VisEvent_SOT_Benchmark).
-3. Download the datasets processing scripts for the three datasets ([FE108](https://drive.google.com/file/d/1OXMXYbRsQIoxMujkJ-K3cxdfpRog5Ca7/view?usp=sharing), [FELT](https://drive.google.com/file/d/1SApVrzb90sP_D8wYFOpOMwsmCeOMMXhG/view?usp=sharing) and [VISEVENT](https://drive.google.com/file/d/17zm3HjA6iPLmY0chKRwMYEmxUD1IAosG/view?usp=sharing)).
-4. Place the three scripts in the following paths accordingly:
+1. Download [Spike-FE108](), [Spike-VisEvent]() and [Spike-COESOT]().
+2. Place the three scripts in the following paths accordingly:
 ```
-├── FE108
+├── Spike-FE108
     ├── train
         ├── airplane
-            ├── events.aedat4
+            ├── spike_thresh_2.5_decay_0.25
             ├── groundtruth_rect.txt
         ├── airplane222
         ├── ...
         ├── whale_mul111
     ├── test
         ├── airplane_mul222
-            ├── events.aedat4
+            ├── spike_thresh_2.5_decay_0.25
             ├── groundtruth_rect.txt
         ├── bike222
         ├── ...
         ├── whale_mul222
-    ├── GTP_FE108.py
-├── VisEvent
+├── Spike-VisEvent
     ├── train
         ├── 00143_tank_outdoor2
-            ├── 00143_tank_outdoor2.aedat4
+            ├── spike_thresh_2.5_decay_0.25
             ├── groundtruth.txt
         ├── 00145_tank_outdoor2
         ├── ...
         ├── video_0081
     ├── test
         ├── 00141_tank_outdoor2
-            ├── 00141_tank_outdoor2.aedat4
+            ├── spike_thresh_2.5_decay_0.25
             ├── groundtruth.txt
         ├── 00147_tank_outdoor2
         ├── ...
         ├── video_0079
-    ├── GTP_VisEvent.py
 ├── FELT
     ├── train
         ├── dvSave-2022_10_11_19_24_36
-            ├── dvSave-2022_10_11_19_24_36.aedat4
+            ├── spike_thresh_2.5_decay_0.25
             ├── groundtruth.txt
         ├── dvSave-2022_10_11_19_27_02
         ├── ...
         ├── dvSave-2022_10_31_10_56_34
     ├── test
         ├── dvSave-2022_10_11_19_43_03
-            ├── dvSave-2022_10_11_19_43_03.aedat4
+            ├── spike_thresh_2.5_decay_0.25
             ├── groundtruth.txt
         ├── dvSave-2022_10_11_19_51_27
         ├── ...
         ├── dvSave-2022_10_31_10_52_10
-    ├── GTP_FELT.py
-```
-
-4.Run the three scripts：
-```
-python YOUR_FE108_PATH/GTP_FE108.py --trans_folder 0 --source_dir YOUR_FE108_ROOT_PATH --target_dir YOUR_FE108_ROOT_PATH --stack_name inter1_stack_3008 --s_train 0 --e_train 76 --s_test 0 --e_test 32 --stack_amount_1c2c 30 --stack_amount_3c 30 --decay_rate_3c 0.8
-```
-```
-python YOUR_FELT_PATH/GTP_FELT.py --trans_folder 0 --source_dir YOUR_FELT_ROOT_PATH --target_dir YOUR_FELT_ROOT_PATH --stack_name inter1_stack_3008 --s_train 0 --e_train 76 --s_test 0 --e_test 32 --stack_amount_1c2c 30 --stack_amount_3c 30 --decay_rate_3c 0.8
-```
-```
-python YOUR_VisEvent_PATH/GTP_VisEvent.py --trans_folder 0 --source_dir YOUR_VisEvent_ROOT_PATH --target_dir YOUR_VisEvent_ROOT_PATH --stack_name inter1_stack_3008 --s_train 0 --e_train 76 --s_test 0 --e_test 32 --stack_amount_1c2c 30 --stack_amount_3c 30 --decay_rate_3c 0.8
 ```
 
 ## Download the pre-trained weights from ImageNet-1K.
