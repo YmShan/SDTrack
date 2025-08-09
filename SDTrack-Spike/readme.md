@@ -90,15 +90,14 @@ It is noteworthy that since we conduct training only once, the test results from
 | SimTrack | 88.64 | -          | 1 × 1            |   93.84    |  78.3     | 52.1   |  62.1   | 44.8  |  69.8     |  50.3     ||
 | OSTrack | 92.52 | -          | 1 × 1            |  98.90   | 70.7   |46.4  | 65.6   |47.8  |   76.4   |  56.7   |[Link](https://drive.google.com/file/d/1R4v-X29k-sXqhP1iUS2jnRBx26lUYxy4/view?usp=sharing)|
 | GRM | | -          | 1 × 1            |    |      |  |   | |     |      |[Link](https://drive.google.com/file/d/1GCl7fGkMMKoy9rINy-JiLYC9tp_oFREj/view?usp=sharing)|
-| **SDTrack-Tiny** | 19.61 | I-LIF          | 1 × 4             |  3.75      |   71.7       |   47.1      |    59.1     |   42.3     |   67.2          |   50.3         |As above|
+| **SDTrack-Tiny** | 19.61 | I-LIF          | 1 × 4             |  3.75      |   71.7       |   47.1      |    59.1     |   42.3     |   67.2          |   50.3         |[Link](https://drive.google.com/file/d/13Vpan239XkEH03ZoPTyGYQ_JMPgKoRDv/view?usp=sharing)|
 
 For SDTrack-Tiny's firing rate and energy consumption calculations, see [Energy_Consumption.py](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Spike/Energy_Consumption.py).
 
 
 
-## Get the training and inference results.
-### Weights
-[SDTrack-Tiny](https://drive.google.com/file/d/13Vpan239XkEH03ZoPTyGYQ_JMPgKoRDv/view?usp=sharing)
+## Get the inference results.
+
 
 ### Tracking Result (Put which into a MATLAB script for testing)
 |Tracker|Spike-FE108|Spike-VisEvent|Spike-COESOT|
