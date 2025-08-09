@@ -63,7 +63,7 @@ All spike data are constructed using the [video2spike_3C.py](https://github.com/
 ## Training
 To mitigate training pressure, enhance generalization capability, and fully exploit the network's learning capacity, our constructed Spike-based Tracking Baseline employs simultaneous training across three datasets.
 ```
-# Training the Tiny model
+# Training the Tiny model (1 * RTX4090 = 1day)
 bash train_tiny.sh
 # Training the Base model
 bash train_base.sh
