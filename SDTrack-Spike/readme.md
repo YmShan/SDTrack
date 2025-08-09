@@ -35,21 +35,21 @@ You can download the compressed package of the environment [here](https://drive.
         ├── 00147_tank_outdoor2
         ├── ...
         ├── video_0079
-├── FELT
-    ├── train
-        ├── dvSave-2022_10_11_19_24_36
+├── Spike-COESOT
+    ├── training_subset
+        ├── dvSave-2021_09_01_06_59_10
             ├── spike_thresh_2.5_decay_0.25
             ├── groundtruth.txt
-        ├── dvSave-2022_10_11_19_27_02
+        ├── dvSave-2021_09_01_07_00_26
         ├── ...
-        ├── dvSave-2022_10_31_10_56_34
-    ├── test
-        ├── dvSave-2022_10_11_19_43_03
+        ├── dvSave-2022_03_21_16_27_10
+    ├── testing_subset
+        ├── dvSave-2021_07_30_11_04_12
             ├── spike_thresh_2.5_decay_0.25
             ├── groundtruth.txt
-        ├── dvSave-2022_10_11_19_51_27
+        ├── dvSave-2021_07_30_11_04_57
         ├── ...
-        ├── dvSave-2022_10_31_10_52_10
+        ├── dvSave-2022_09_24_16_05_56
 ```
 
 ## Download the pre-trained weights from ImageNet-1K.
