@@ -89,9 +89,9 @@ It is noteworthy that since we conduct training only once, the test results from
 |:----------------:|:------------:|:----------------:|:-------------------:|:------------:|:--------------:|:-------------:|:-------------:|:------------:|:-----------------:|:----------------:|:-:|
 | SimTrack | 88.64 | -          | 1 × 1            |   93.84    |  78.3     | 52.1   |  62.1   | 44.8  |  69.8     |  50.3     |[Link](https://drive.google.com/file/d/1u8vMDMgxQidAQ2o_HXev0aAV0udB8e-a/view?usp=sharing)|
 | OSTrack | 92.52 | -          | 1 × 1            |  98.90   | 70.7   |46.4  | 65.6   |47.8  |   76.4   |  56.7   |[Link](https://drive.google.com/file/d/1R4v-X29k-sXqhP1iUS2jnRBx26lUYxy4/view?usp=sharing)|
-| GRM | | -          | 1 × 1            |    |      |  |   | |     |      |[Link](https://drive.google.com/file/d/1GCl7fGkMMKoy9rINy-JiLYC9tp_oFREj/view?usp=sharing)|
+| GRM | 99.83| -          | 1 × 1            | 142.14   |  75.0    | 49.9 | 67.2  |49.1 |  79.3   |  58.9    |[Link](https://drive.google.com/file/d/1GCl7fGkMMKoy9rINy-JiLYC9tp_oFREj/view?usp=sharing)|
 | SeqTrack | | -          | 1 × 1            |    |      |  |   | |     |      ||
-| STARK | | -          | 1 × 1            |    |      |  |   | |     |      |[Link](https://drive.google.com/file/d/1g04hgiaA07kfYmwGrr4OLycPj7e8uoQV/view?usp=sharing)|
+| STARK |28.23 | -          | 1 × 1            | 58.88   |  72.4    | 48.2 | 55.3  | 40.0| 63.0    | 50.1     |[Link](https://drive.google.com/file/d/1g04hgiaA07kfYmwGrr4OLycPj7e8uoQV/view?usp=sharing)|
 | HIPTrack | | -          | 1 × 1            |    |      |  |   | |     |      ||
 | HIT| | -          | 1 × 1            |    |      |  |   | |     |      ||
 | ARTrack | | -          | 1 × 1            |    |      |  |   | |     |      ||
