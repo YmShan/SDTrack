@@ -85,10 +85,10 @@ It is noteworthy that since we conduct training only once, the test results from
 2. For the three datasets, before evaluation, the test results (including multiple .txt files) need to be copied to the `tracking_results` folder in the corresponding directory. Additionally, the `utils/config_tracker.m` file in the respective folder should be modified. Finally, run the corresponding MATLAB script to generate the evaluation results. It is important to note that before testing AUC, you need to set `ranking_type = AUC`, and before testing PR, you need to set `ranking_type = threshold`. 
 
 ## SDTrack Event-based Tracking Baseline
-| Methods        | Param. (M) | Spiking Neuron | Timesteps (T × D) | Power (mJ) | FE108 AUC(%) | FE108 PR(%) | VisEvent AUC(%) | VisEvent PR(%) | COESOT AUC(%) | COESOT PR(%) |
-|:----------------:|:------------:|:----------------:|:-------------------:|:------------:|:--------------:|:-------------:|:-------------:|:------------:|:-----------------:|:----------------:|
-| SimTrack | 88.64 | I-LIF          | 1            |   93.84    |  78.3     | 52.1   |  62.1   | 44.8  |  69.8     |  50.3     |
-| **SDTrack-Tiny** | 19.61 | I-LIF          | 1 × 4             |        |   71.7       |   47.1      |    59.1     |   42.3     |   67.2          |   50.3         |
+| Methods        | Param. (M) | Spiking Neuron | Timesteps (T × D) | Power (mJ) | FE108 AUC(%) | FE108 PR(%) | VisEvent AUC(%) | VisEvent PR(%) | COESOT AUC(%) | COESOT PR(%) |Weight|
+|:----------------:|:------------:|:----------------:|:-------------------:|:------------:|:--------------:|:-------------:|:-------------:|:------------:|:-----------------:|:----------------:|:-:|
+| SimTrack | 88.64 | -          | 1            |   93.84    |  78.3     | 52.1   |  62.1   | 44.8  |  69.8     |  50.3     ||
+| **SDTrack-Tiny** | 19.61 | I-LIF          | 1 × 4             |        |   71.7       |   47.1      |    59.1     |   42.3     |   67.2          |   50.3         |As above|
 
 
 
