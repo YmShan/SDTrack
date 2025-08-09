@@ -61,109 +61,40 @@ You can download the compressed package of the environment [here](https://drive.
 2. The testing path configuration file is located at `SDTrack/lib/test/evaluation/local.py`.
 
 ## Training
+To mitigate training pressure, enhance generalization capability, and fully exploit the network's learning capacity, our constructed Spike-based Tracking Baseline employs simultaneous training across three datasets.
 ```
-# FE108
-bash train_tiny_fe108.sh
-bash train_base_fe108.sh
-# VisEvent
-bash train_tiny_visevent.sh
-bash train_base_visevent.sh
-# FELT
-bash train_tiny_felt.sh
-bash train_base_felt.sh
+# Training the Tiny model
+bash train_tiny.sh
+# Training the Base model
+bash train_base.sh
 ```
 
 ## Test
+Testing on all three datasets utilizes the same script
 ```
-# FE108
-bash test_tiny_fe108.sh
-bash test_base_fe108.sh
-# VisEvent
-bash test_tiny_visevent.sh
-bash test_base_visevent.sh
-# FELT
-bash test_tiny_felt.sh
-bash test_base_felt.sh
+# Testing the Tiny model
+bash test_tiny.sh
+# Testing the Base model
+bash test_base.sh
 ```
-
-## Before Running SDTrack-Tiny/Base On FELT Dataset.
-1. **Transform Configuration Adjustment** Modify the data augmentation settings in the '/SDTrack/lib/train/base_functions.py' path to:
-```
-transform_train = tfm.Transform(tfm.ToTensor(), 
-                               tfm.Normalize(mean=cfg.DATA.MEAN, std=cfg.DATA.STD)
-                                )
-transform_val = tfm.Transform(tfm.ToTensor(),
-                              tfm.Normalize(mean=cfg.DATA.MEAN, std=cfg.DATA.STD)
-                              )
-```
-2. **ToTensor Class Modification** Revise the transform_image method in the ToTensor class located at '/SDTrack/lib/train/data/transforms.py' to:
-```
-def transform_image(self, image):
-    # handle numpy array
-    if image.ndim == 2:
-        image = image[:, :, None]
-
-    image = torch.from_numpy(image.transpose((2, 0, 1)))
-    # backward compatibility
-    if isinstance(image, torch.ByteTensor):
-        return image.float().div(255)
-    else:
-        return image
-```
-3. **Testing Phase Modification** Alter the Preprocessor class in '/SDTrack/lib/test/tracker/data_utils.py' to:
-```
-class Preprocessor(object):
-    def __init__(self):
-        self.mean = torch.tensor([0.485, 0.456, 0.406]).view((1, 3, 1, 1)).cuda()
-        self.std = torch.tensor([0.229, 0.224, 0.225]).view((1, 3, 1, 1)).cuda()
-
-    def process(self, img_arr: np.ndarray, amask_arr: np.ndarray):
-        # Deal with the image patch
-        img_tensor = torch.tensor(img_arr).cuda().float().permute((2,0,1)).unsqueeze(dim=0)
-        img_tensor_norm = ((img_tensor / 255.0) - self.mean) / self.std  # (1,3,H,W)
-        # Deal with the attention mask
-        amask_tensor = torch.from_numpy(amask_arr).to(torch.bool).cuda().unsqueeze(dim=0)  # (1,H,W)
-        return NestedTensor(img_tensor_norm, amask_tensor)
-```
+It is noteworthy that since we conduct training only once, the test results from all three datasets will be stored in the same folder. Therefore, we recommend downloading the test results locally after completing the evaluation on the first dataset, then deleting the test results of the first dataset before proceeding to evaluate the second dataset, and so forth.
 
 
 ## Evaluation
-1. Download the MATLAB script for evaluation([FE108](https://drive.google.com/file/d/1sf2pSOAYAcsWbnxC2brsG_QnzvMP0rrJ/view?usp=sharing), [FELT](https://drive.google.com/file/d/1CqYK8q2mysR2FGZx9GJWY6lzbXSiUXxF/view?usp=sharing) and [VisEvent](https://drive.google.com/file/d/1QgZEMbnJifpSFjnUJIVlL9D3_AeOZWYf/view?usp=sharing)). The evaluation scripts for FELT and VisEvent were provided by [Xiao Wang](https://github.com/wangxiao5791509), while the evaluation script for FE108 was modified by us.
-2. For the three datasets, before evaluation, the test results (including multiple .txt files) need to be copied to the `tracking_results` folder in the corresponding directory. Additionally, the `utils/config_tracker.m` file in the respective folder should be modified. Finally, run the corresponding MATLAB script to generate the evaluation results. It is important to note that before testing AUC, you need to set `ranking_type = AUC`, and before testing PR, you need to set `ranking_type = threshold`. For the FELT dataset, before moving the test results to the `tracking_results` folder, you first need to move the test results to the `processing_data` directory and run `processing_1.py` and `processing_2.py` to correct their format.
+1. Download the MATLAB script for evaluation([FE108](https://drive.google.com/file/d/1sf2pSOAYAcsWbnxC2brsG_QnzvMP0rrJ/view?usp=sharing), [VisEvent](https://drive.google.com/file/d/1QgZEMbnJifpSFjnUJIVlL9D3_AeOZWYf/view?usp=sharing)) and [COESOT](https://drive.google.com/file/d/1LR_9PgqlsxrSKfIKpT84gmWUHF_LBrcC/view?usp=sharing)). The evaluation scripts for FELT and VisEvent were provided by [Xiao Wang](https://github.com/wangxiao5791509), while the evaluation script for FE108 was modified by us.
+2. For the three datasets, before evaluation, the test results (including multiple .txt files) need to be copied to the `tracking_results` folder in the corresponding directory. Additionally, the `utils/config_tracker.m` file in the respective folder should be modified. Finally, run the corresponding MATLAB script to generate the evaluation results. It is important to note that before testing AUC, you need to set `ranking_type = AUC`, and before testing PR, you need to set `ranking_type = threshold`. 
 
 ## SDTrack Event-based Tracking Baseline
-| Methods        | Param. (M) | Spiking Neuron | Timesteps (T × D) | Power (mJ) | FE108 AUC(%) | FE108 PR(%) | FELT AUC(%) | FELT PR(%) | VisEvent AUC(%) | VisEvent PR(%) |
+| Methods        | Param. (M) | Spiking Neuron | Timesteps (T × D) | Power (mJ) | FE108 AUC(%) | FE108 PR(%) | VisEvent AUC(%) | VisEvent PR(%) | COESOT AUC(%) | COESOT PR(%) |
 |----------------|------------|----------------|-------------------|------------|--------------|-------------|-------------|------------|-----------------|----------------|
-| STARK          | 28.23      | -              | 1 × 1             | 58.88      | 57.4         | 89.2        | 39.3*       | 50.8*      | 34.1            | 46.8           |
-| SimTrack       | 88.64      | -              | 1 × 1             | 93.84      | 56.7         | 88.3        | 36.8        | 47.0       | 34.6            | 47.6           |
-| OSTrack256     | 92.52      | -              | 1 × 1             | 98.90      | 54.6         | 87.1        | 35.9        | 45.5       | 32.7            | 46.4           |
-| ARTrack256     | 202.56     | -              | 1 × 1             | 174.80     | 56.6         | 88.5        | 39.5        | 49.4       | 33.0            | 43.8           |
-| SeqTrack-B256  | 90.60      | -              | 1 × 1             | 302.68     | 53.5         | 85.5        | 33.0        | 42.0       | 28.6            | 43.3           |
-| HiT-B          | 42.22      | -              | 1 × 1             | 19.78      | 55.9         | 88.5        | 38.5        | 48.9       | 34.6            | 47.6           |
-| GRM            | 99.83      | -              | 1 × 1             | 142.14     | 56.8         | 89.3        | 37.2        | 47.4       | 33.4            | 47.7           |
-| HIPTrack       | 120.41     | -              | 1 × 1             | 307.74     | 50.8         | 81.0        | 38.2        | 48.9       | 32.1            | 45.2           |
-| ODTrack        | 92.83      | -              | 1 × 1             | 335.80     | 43.2         | 69.7        | 29.7        | 35.9       | 24.7            | 34.7           |
-| SiamRPN*       | -          | -              | -                 | -          | -            | -           | -           | -          | 24.7            | 38.4           |
-| ATOM*          | -          | -              | -                 | -          | -            | -           | 22.3        | 28.4       | 28.6            | 47.4           |
-| DiMP*          | -          | -              | -                 | -          | -            | -           | 37.8        | 48.5       | 31.5            | 44.2           |
-| PrDiMP*        | -          | -              | -                 | -          | -            | -           | 34.9        | 44.5       | 32.2            | 46.9           |
-| MixFormer*     | 37.55      | -              | 1 × 1             | -          | -            | -           | 38.9        | 50.4       | -               | -              |
-| STNet*         | 20.55      | LIF            | 3 × 1             | -          | -            | -           | -           | -          | 35.0            | 50.3           |
-| SNNTrack*      | 31.40      | BA-LIF         | 5 × 1             | 8.25       | -            | -           | -           | -          | 35.4            | 50.4           |
-| **SDTrack-Tiny** | 19.61 | I-LIF          | 4 × 1             | 8.15       | 56.7         | 89.1        | 35.8        | 44.0       | 35.4            | 48.7           |
-| **SDTrack-Tiny** | 19.61 | I-LIF          | 2 × 2             | 9.87       | 55.3         | 88.1        | 35.7        | 45.3       | 35.4            | 49.5           |
-| **SDTrack-Tiny** | 19.61 | I-LIF          | 1 × 4             | 8.16       | 59.0         | 91.3        | 39.3        | 51.2       | 35.6            | 49.2           |
-| **SDTrack-Base**| 107.26     | I-LIF          | 1 × 4             | 30.52      | 59.9         | 91.5        | 40.0        | 51.4       | 37.4            | 51.5           |
+| **SDTrack-Tiny** | 19.61 | I-LIF          | 1 × 4             |        |   71.7       |   47.1      |    59.1     |   42.3     |   67.2          |   50.3         |
+
 
 
 
 ## Get the training and inference results.
 ### Weights
-|  | FE108 | FELT | VisEvent |
-|----------|----------|----------|----------|
-| SDTrack-Tiny    |  [link](https://drive.google.com/file/d/1Hal0RcEgYKuqBiUFwPHa8f2bisboIp80/view?usp=sharing)  |  [link](https://drive.google.com/file/d/1GoGljfudnjSw7bvW53bpPy2jv2-IZstd/view?usp=sharing)  | [link](https://drive.google.com/file/d/1rbZT2DBMeKrWZ8ORwNDz9fBKoMqRGN-_/view?usp=sharing)   |
-| SDTrack-Base    | [link](https://drive.google.com/file/d/1tnJme3hugllA8xAIODoARzKaOkQKh6jr/view?usp=sharing)   | [link](https://drive.google.com/file/d/18deLeGd2hWOtdU2C6YoxHrSTseIPfKyv/view?usp=sharing)   | [link](https://drive.google.com/file/d/1hbf0XfSovBkvHPP6Ys65fwO2L7vf59l0/view?usp=sharing)   |
-### The test results of our method and other methods mentioned in the paper.
-| FE108 | FELT | VisEvent |
-|----------|----------|----------|
-|  [link](https://drive.google.com/file/d/1Slse96Gu3m0RCpAa0vwZq1nC4iVxAoT9/view?usp=sharing)  |  [link](https://drive.google.com/file/d/1XIXwD7PWk-WUcliqi5DMJzJ4X-jassDt/view?usp=sharing)  | [link](https://drive.google.com/file/d/1By9Wh_L0d8gOxl12_b3T4XaKoOW0CXx1/view?usp=drive_link)   |
+[SDTrack-Tiny](https://drive.google.com/file/d/13Vpan239XkEH03ZoPTyGYQ_JMPgKoRDv/view?usp=sharing)
+
+The downloaded weights should be placed in the SDTrack-Spike/output/checkpoints/train/SDTrack/SDTrack-tiny directory. Subsequently, testing can be executed directly.
+
