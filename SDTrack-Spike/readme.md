@@ -87,6 +87,7 @@ It is noteworthy that since we conduct training only once, the test results from
 ## SDTrack Event-based Tracking Baseline
 | Methods        | Param. (M) | Spiking Neuron | Timesteps (T × D) | Power (mJ) | FE108 AUC(%) | FE108 PR(%) | VisEvent AUC(%) | VisEvent PR(%) | COESOT AUC(%) | COESOT PR(%) |
 |----------------|------------|----------------|-------------------|------------|--------------|-------------|-------------|------------|-----------------|----------------|
+| SimTrack | 88.64 | I-LIF          | 1            |   93.84    |  78.3     | 52.1   |  62.1   | 44.8  |  69.8     |  50.3     |
 | **SDTrack-Tiny** | 19.61 | I-LIF          | 1 × 4             |        |   71.7       |   47.1      |    59.1     |   42.3     |   67.2          |   50.3         |
 
 
