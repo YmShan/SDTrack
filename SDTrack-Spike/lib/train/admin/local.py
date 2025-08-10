@@ -1,8 +1,8 @@
 class EnvironmentSettings:
     def __init__(self):
-        self.workspace_dir = '/data1/users/shanym/SDTrack-Spike'    # Base directory for saving network checkpoints.
-        self.tensorboard_dir = '/data1/users/shanym/SDTrack-Spike/tensorboard'    # Directory for tensorboard files.
-        self.pretrained_networks = '/data1/users/shanym/SDTrack-Spike/pretrained_models'
+        self.workspace_dir = '/data1/users/xxx/SDTrack-Spike'    # Base directory for saving network checkpoints.
+        self.tensorboard_dir = '/data1/users/xxx/SDTrack-Spike/tensorboard'    # Directory for tensorboard files.
+        self.pretrained_networks = '/data1/users/xxx/SDTrack-Spike/pretrained_models'
         self.lasot_dir = '/data/dataset/lasot'
         self.got10k_dir = '/data/dataset/got10k/train'
         self.got10k_val_dir = '/data/dataset/got10k/val'
