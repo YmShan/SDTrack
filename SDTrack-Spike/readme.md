@@ -88,7 +88,7 @@ Please kindly note the storage space requirements. The compressed versions of th
 2. The testing path configuration file is located at `SDTrack/lib/test/evaluation/local.py`.
 
 The entire modification process consists of two steps. The first step is to replace `/data1/users/xxx/SDTrack-Spike` with your file path. The second step is to align the dataset paths with your dataset storage locations:
-···
+```
 self.eotb_dir_train = '/data1/dataset/Spike-FE108/train'
 self.visevent_train = '/data1/dataset/Spike-VisEvent/train/'
 self.coesot_train = '/data/dataset/Spike-COESOT/training_subset/'
@@ -96,7 +96,7 @@ self.coesot_train = '/data/dataset/Spike-COESOT/training_subset/'
 settings.eotb_path = '/data1/dataset/FE108/test'
 settings.visevent_path = '/data1/dataset/VisEvent/test/'
 settings.coesot_path = '/data/dataset/COESOT_dataset/testing_subset/'
-···
+```
 
 ## Training
 To mitigate training pressure, enhance generalization capability, and fully exploit the network's learning capacity, our constructed Spike-based Tracking Baseline employs simultaneous training across three datasets.
