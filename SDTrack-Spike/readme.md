@@ -2,9 +2,7 @@
 You can download the compressed package of the environment [here](https://drive.google.com/file/d/1bHu7CbM6TiSXNXnMbfj8W-eUNvO_4wyA/view?usp=sharing). Or manually install the environment using [create_SDTrack_env.sh](https://github.com/YmShan/SDTrack/blob/main/create_SDTrack_env.sh)
 
 ## Data Prepare
-1. Download [Spike-FE108](https://pan.baidu.com/s/1PzHsg3zpU5NF8-vB1TVmaQ?pwd=7hsf), [Spike-VisEvent](Spike-VisEvent.zip
-链接: https://pan.baidu.com/s/1YouDIMm0otCtI6p2oqAqJg?pwd=ixjx) and [Spike-COESOT](Spike-COESOT.zip
-链接: https://pan.baidu.com/s/15KDBaV3-z0lGyBFJlSgCgw?pwd=u7cv).
+1. Download [Spike-FE108](https://pan.baidu.com/s/1PzHsg3zpU5NF8-vB1TVmaQ?pwd=7hsf), [Spike-VisEvent](https://pan.baidu.com/s/1YouDIMm0otCtI6p2oqAqJg?pwd=ixjx) and [Spike-COESOT](https://pan.baidu.com/s/15KDBaV3-z0lGyBFJlSgCgw?pwd=u7cv).
 2. Place the three scripts in the following paths accordingly:
 ```
 ├── Spike-FE108
