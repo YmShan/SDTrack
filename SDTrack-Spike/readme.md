@@ -154,7 +154,7 @@ For SDTrack-Tiny: The downloaded weights should be placed in the SDTrack-Spike/o
 |STARK|[Link](https://drive.google.com/file/d/1xloKyvUIiKlgYTpNPPbM_ShTFlDt915c/view?usp=sharing)|[Link](https://drive.google.com/file/d/1kFQLpIdS4AmWeGLaA32ua97W9feV2Dbh/view?usp=sharing)|[Link](https://drive.google.com/file/d/1G60T9XnEDLBqpS78FJpnZne89nWHOW4i/view?usp=sharing)|
 |HIT|[Link](https://drive.google.com/file/d/1MBmF26qDR2Y0y9d1KDZUmUJl9cr8Dyv1/view?usp=sharing)|[Link](https://drive.google.com/file/d/1OzJJTd6B-IN8D5nA6TUvNtZZY4gVRhwm/view?usp=sharing)|[Link](https://drive.google.com/file/d/1pTUQO_ujS13DWQFw5B-9S5DS4BDzyztv/view?usp=sharing)|
 |GRM|[Link](https://drive.google.com/file/d/1rVf6iabk0PL5muRiw9_Uz0pRStj6p9an/view?usp=sharing)|[Link](https://drive.google.com/file/d/1IIwzukinawwLMrNgj3SKsEK142tUExT3/view?usp=sharing)|[Link](https://drive.google.com/file/d/1pvspZLRFtj3TF5U8W6VeaAbDQ1sOf4TZ/view?usp=sharing)|
-|SeqTrack||||
+|SeqTrack|[Link](https://drive.google.com/file/d/1729k-ywulEe2qwM0dVi10ItrTjJk7tU1/view?usp=sharing)|[Link](https://drive.google.com/file/d/1N-aZDzVMAFNl1q05NQZ57ekM719LcBah/view?usp=sharing)|[Link](https://drive.google.com/file/d/1dxf0tjdjWajYbBpUHHHn78EE_r5JsnJ_/view?usp=sharing)|
 |HIPTrack||||
 |ARTrack||||
 |ODTrack|[Link](https://drive.google.com/file/d/14tAZY0Fw0vxAg9NbSkkVW8n-GjVby1up/view?usp=sharing)|[Link](https://drive.google.com/file/d/1uA7fdsx7eGemCQhlIyIiBHhmA_84-K75/view?usp=sharing)|[Link](https://drive.google.com/file/d/1ENUu10CEH0epspdnbFZge1hMMyts7_U_/view?usp=sharing)|
