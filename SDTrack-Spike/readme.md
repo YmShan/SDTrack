@@ -122,6 +122,9 @@ It is noteworthy that since we conduct training only once, the test results from
 1. Download the MATLAB script for evaluation([FE108](https://drive.google.com/file/d/1sf2pSOAYAcsWbnxC2brsG_QnzvMP0rrJ/view?usp=sharing), [VisEvent](https://drive.google.com/file/d/1QgZEMbnJifpSFjnUJIVlL9D3_AeOZWYf/view?usp=sharing)) and [COESOT](https://drive.google.com/file/d/1LR_9PgqlsxrSKfIKpT84gmWUHF_LBrcC/view?usp=sharing)). The evaluation scripts for FELT and VisEvent were provided by [Xiao Wang](https://github.com/wangxiao5791509), while the evaluation script for FE108 was modified by us.
 2. For the three datasets, before evaluation, the test results (including multiple .txt files) need to be copied to the `tracking_results` folder in the corresponding directory. Additionally, the `utils/config_tracker.m` file in the respective folder should be modified. Finally, run the corresponding MATLAB script to generate the evaluation results. It is important to note that before testing AUC, you need to set `ranking_type = AUC`, and before testing PR, you need to set `ranking_type = threshold`. 
 
+If MATLAB configuration proves challenging, an alternative testing approach can be utilized: `python tracking/analysis_results.py`. However, please note that the test results may exhibit some deviation from our reported results due to differences in integration calculation methods.
+
+
 ## SDTrack Event-based Tracking Baseline
 | Methods        | Param. (M) | Spiking Neuron | Timesteps (T × D) | Power (mJ) | FE108 AUC(%) | FE108 PR(%) | VisEvent AUC(%) | VisEvent PR(%) | COESOT AUC(%) | COESOT PR(%) |Weight|
 |:----------------:|:------------:|:----------------:|:-------------------:|:------------:|:--------------:|:-------------:|:-------------:|:------------:|:-----------------:|:----------------:|:-:|
