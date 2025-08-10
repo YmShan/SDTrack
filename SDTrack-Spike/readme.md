@@ -3,12 +3,16 @@ You can download the compressed package of the environment [here](https://drive.
 
 ## Data Prepare
 1. Download [Spike-FE108](https://pan.baidu.com/s/1PzHsg3zpU5NF8-vB1TVmaQ?pwd=7hsf), [Spike-VisEvent](https://pan.baidu.com/s/1YouDIMm0otCtI6p2oqAqJg?pwd=ixjx) and [Spike-COESOT](https://pan.baidu.com/s/15KDBaV3-z0lGyBFJlSgCgw?pwd=u7cv).
-2. Place the three scripts in the following paths accordingly:
+2. The correct directory structure for the three datasets after extraction is as follows:
 ```
 ├── Spike-FE108
     ├── train
         ├── airplane
             ├── spike_thresh_2.5_decay_0.25
+                ├── 0000.png
+                ├── 0001.png
+                ├── ...
+                ├── 1113.png
             ├── groundtruth_rect.txt
         ├── airplane222
         ├── ...
@@ -16,6 +20,10 @@ You can download the compressed package of the environment [here](https://drive.
     ├── test
         ├── airplane_mul222
             ├── spike_thresh_2.5_decay_0.25
+                ├── 0000.png
+                ├── 0001.png
+                ├── ...
+                ├── 2050.png
             ├── groundtruth_rect.txt
         ├── bike222
         ├── ...
@@ -24,6 +32,10 @@ You can download the compressed package of the environment [here](https://drive.
     ├── train
         ├── 00143_tank_outdoor2
             ├── spike_thresh_2.5_decay_0.25
+                ├── 0000.png
+                ├── 0001.png
+                ├── ...
+                ├── 0103.png
             ├── groundtruth.txt
         ├── 00145_tank_outdoor2
         ├── ...
@@ -31,6 +43,10 @@ You can download the compressed package of the environment [here](https://drive.
     ├── test
         ├── 00141_tank_outdoor2
             ├── spike_thresh_2.5_decay_0.25
+                ├── 0000.png
+                ├── 0001.png
+                ├── ...
+                ├── 0104.png
             ├── groundtruth.txt
         ├── 00147_tank_outdoor2
         ├── ...
@@ -39,6 +55,10 @@ You can download the compressed package of the environment [here](https://drive.
     ├── training_subset
         ├── dvSave-2021_09_01_06_59_10
             ├── spike_thresh_2.5_decay_0.25
+                ├── 0000.png
+                ├── 0001.png
+                ├── ...
+                ├── 0037.png
             ├── groundtruth.txt
         ├── dvSave-2021_09_01_07_00_26
         ├── ...
@@ -46,6 +66,10 @@ You can download the compressed package of the environment [here](https://drive.
     ├── testing_subset
         ├── dvSave-2021_07_30_11_04_12
             ├── spike_thresh_2.5_decay_0.25
+                ├── 0000.png
+                ├── 0001.png
+                ├── ...
+                ├── 0492.png
             ├── groundtruth.txt
         ├── dvSave-2021_07_30_11_04_57
         ├── ...
