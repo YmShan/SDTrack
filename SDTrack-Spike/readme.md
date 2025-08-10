@@ -131,7 +131,7 @@ If MATLAB configuration proves challenging, an alternative testing approach can 
 | SimTrack | 88.64 | 1 × 1            |   93.84    |  78.3     | 52.1   |  62.1   | 44.8  |  69.8     |  50.3  |  [Link](https://drive.google.com/file/d/1-YU8QBLH48BkUvgUmXaQV41_tF-JWInZ/view?usp=sharing) |[Link](https://drive.google.com/file/d/1u8vMDMgxQidAQ2o_HXev0aAV0udB8e-a/view?usp=sharing)|
 | OSTrack | 92.52  | 1 × 1            |  98.90   | 70.7   |46.4  | 65.6   |47.8  |   76.4   |  56.7  | [Link](https://drive.google.com/file/d/1BpAM5EGJXEckGp5ZIaeLv1tQZF5jZusj/view?usp=sharing)|[Link](https://drive.google.com/file/d/1R4v-X29k-sXqhP1iUS2jnRBx26lUYxy4/view?usp=sharing)|
 | STARK |28.23 | 1 × 1            | 58.88   |  72.4    | 48.2 | 55.3  | 40.0| 63.0    | 50.1    | [Link](https://drive.google.com/file/d/1lLGLLYF5Not_Ro3SkhF0Bvj3AMIE1CeR/view?usp=sharing)|[Link](https://drive.google.com/drive/folders/1DN2nflGKXM7Ho_HZ7FFiWg2t1MZTmW3Y?usp=sharing)|
-| HIT| | 1 × 1            |    |      |  |   | |     |      ||
+| HIT| | 1 × 1            |    |   62.1   | 39.2 |  48.1 | 34.7| 51.3    | 42.3| [Link](https://drive.google.com/file/d/1NCcBpTd2d0TY5krnSCmTC_PyXMGG2bhd/view?usp=sharing)    |[Link](https://drive.google.com/file/d/17usRyETw4HDX0OfiJ4LhqC-zdBi8YEKF/view?usp=sharing)|
 | GRM | 99.83| 1 × 1            | 142.14   |  75.0    | 49.9 | 67.2  |49.1 |  79.3   |  58.9  | [Link](https://drive.google.com/file/d/1QGCVi-WMGHJTi0taVO3_nUmxO2jcfFvX/view?usp=sharing) |[Link](https://drive.google.com/file/d/1GCl7fGkMMKoy9rINy-JiLYC9tp_oFREj/view?usp=sharing)|
 | SeqTrack |  | 1 × 1            |    |      |  |   | |     |      |||
 | HIPTrack |  | 1 × 1            |    |      |  |   | |     |      |||
@@ -152,7 +152,7 @@ For SDTrack-Tiny: The downloaded weights should be placed in the SDTrack-Spike/o
 |SimTrack|[Link](https://drive.google.com/file/d/1GX-X6Onpz8o5A4b1rlR5R_Uzde5ZkWv0/view?usp=sharing)|[Link](https://drive.google.com/file/d/1owWPyp4yb-Zc2KrThfa3Ca4BrtIIZdO5/view?usp=sharing)|[Link](https://drive.google.com/file/d/1TjidTo-LooXy4CgZ280C7L84XuEmgDFh/view?usp=sharing)|
 |OSTrack|[Link](https://drive.google.com/file/d/1ykHG5X3sFGTmUVg61gb8cfjuF-3EsaRB/view?usp=sharing)|[Link](https://drive.google.com/file/d/1bDhTv3MqztnyXuqShmjUHeqQ5IihSUWe/view?usp=sharing)|[Link](https://drive.google.com/file/d/1kSYR26NDWzr8tSpPb2X3rTUgbfwidxf3/view?usp=sharing)|
 |STARK|[Link](https://drive.google.com/file/d/1xloKyvUIiKlgYTpNPPbM_ShTFlDt915c/view?usp=sharing)|[Link](https://drive.google.com/file/d/1kFQLpIdS4AmWeGLaA32ua97W9feV2Dbh/view?usp=sharing)|[Link](https://drive.google.com/file/d/1G60T9XnEDLBqpS78FJpnZne89nWHOW4i/view?usp=sharing)|
-|HIT||||
+|HIT|[Link](https://drive.google.com/file/d/1MBmF26qDR2Y0y9d1KDZUmUJl9cr8Dyv1/view?usp=sharing)|[Link](https://drive.google.com/file/d/1OzJJTd6B-IN8D5nA6TUvNtZZY4gVRhwm/view?usp=sharing)|[Link](https://drive.google.com/file/d/1pTUQO_ujS13DWQFw5B-9S5DS4BDzyztv/view?usp=sharing)|
 |GRM|[Link](https://drive.google.com/file/d/1rVf6iabk0PL5muRiw9_Uz0pRStj6p9an/view?usp=sharing)|[Link](https://drive.google.com/file/d/1IIwzukinawwLMrNgj3SKsEK142tUExT3/view?usp=sharing)|[Link](https://drive.google.com/file/d/1pvspZLRFtj3TF5U8W6VeaAbDQ1sOf4TZ/view?usp=sharing)|
 |SeqTrack||||
 |HIPTrack||||
