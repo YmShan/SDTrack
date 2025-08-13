@@ -204,5 +204,6 @@ AC += 9898700
 AC += 10047538
 AC += 3122735
 
-print(MAC * 4.6 + AC * 0.9, end='')
+print(4 * (MAC * 4.6 + AC * 0.9), end='')
+
 print('pJ')
