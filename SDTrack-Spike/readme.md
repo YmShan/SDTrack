@@ -139,7 +139,7 @@ If MATLAB configuration proves challenging, an alternative testing approach can 
 | **SDTrack-Tiny** | 19.61 | 1 × 4             |  7.88      |   71.7       |   47.1      |    59.1     |   42.3     |   67.2          |   50.3       |[Link](https://github.com/YmShan/SDTrack/tree/main/SDTrack-Spike)  |[Link](https://drive.google.com/file/d/13Vpan239XkEH03ZoPTyGYQ_JMPgKoRDv/view?usp=sharing)|
 |**SDTrack-Base**|107.26|1 × 4|29.69|72.2|47.9|59.3|43.6|68.5|52.4|[Link](https://github.com/YmShan/SDTrack/tree/main/SDTrack-Spike)|[Link](https://drive.google.com/file/d/15b9HrP-AuyXA-NuFLBgy5TjnGhKmNY_j/view?usp=sharing)|
 
-For SDTrack-Tiny(Base)'s firing rate and energy consumption calculations, see [Energy_Consumption.py](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Spike/Energy_Consumption.py).
+For SDTrack-Tiny(Base)'s firing rate and energy consumption calculations, see [Energy_Consumption_Tiny.py](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Spike/Energy_Consumption_Base.py)/[Energy_Consumption.py](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Spike/Energy_Consumption_Base.py).
 
 For SDTrack-Tiny(Base): The downloaded weights should be placed in the SDTrack-Spike/output/checkpoints/train/SDTrack/SDTrack-tiny(Base) directory. Subsequently, testing can be executed directly.
 
