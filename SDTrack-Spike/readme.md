@@ -137,6 +137,7 @@ If MATLAB configuration proves challenging, an alternative testing approach can 
 | HIPTrack | 120.41 | 1 × 1            | 307.74   |  69.6    | 45.3 |67.4   |49.6 | 82.5    |  62.5    |[Link](https://drive.google.com/file/d/1lK2Ahwx29PJXfF-b4w0qhwNKM3yXCDY_/view?usp=sharing)|[Link](https://drive.google.com/file/d/1Di9p-iWzQs-k0WJKZjJghnHeDjRdq1Wk/view?usp=sharing)|
 | ODTrack |  92.83 | 1 × 1            |  335.80  |  78.7    | 52.2 |68.5   | 50.4| 75.5    | 56.9     |[Link](https://drive.google.com/file/d/1gZ33PYMYE3AFQw2YAO2zG5sOgz3FUrzs/view?usp=sharing)|[Link](https://drive.google.com/file/d/1TeY8IsxOkR5CL3evxhiXAYGHU08YEmsr/view?usp=sharing)|
 | **SDTrack-Tiny** | 19.61 | 1 × 4             |  3.75      |   71.7       |   47.1      |    59.1     |   42.3     |   67.2          |   50.3       |[Link](https://github.com/YmShan/SDTrack/tree/main/SDTrack-Spike)  |[Link](https://drive.google.com/file/d/13Vpan239XkEH03ZoPTyGYQ_JMPgKoRDv/view?usp=sharing)|
+|**SDTrack-Base**|107.26|1 × 4||72.2|47.9|59.3|43.6|68.5|52.4|[Link](https://github.com/YmShan/SDTrack/tree/main/SDTrack-Spike)|[Link](https://drive.google.com/file/d/15b9HrP-AuyXA-NuFLBgy5TjnGhKmNY_j/view?usp=sharing)|
 
 For SDTrack-Tiny's firing rate and energy consumption calculations, see [Energy_Consumption.py](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Spike/Energy_Consumption.py).
 
@@ -157,4 +158,5 @@ For SDTrack-Tiny: The downloaded weights should be placed in the SDTrack-Spike/o
 |HIPTrack|[Link](https://drive.google.com/file/d/1RWHx5HQycYwoMhB0ecHDEoZwfstkoNhP/view?usp=sharing)|[Link](https://drive.google.com/file/d/1C6ig8EYjgmqbvIjLbxi4SVa5lPsg22vw/view?usp=sharing)|[Link](https://drive.google.com/file/d/1kC_aFCHLvvvsFmRW1ABI-jn9NlkURClf/view?usp=sharing)|
 |ODTrack|[Link](https://drive.google.com/file/d/14tAZY0Fw0vxAg9NbSkkVW8n-GjVby1up/view?usp=sharing)|[Link](https://drive.google.com/file/d/1uA7fdsx7eGemCQhlIyIiBHhmA_84-K75/view?usp=sharing)|[Link](https://drive.google.com/file/d/1ENUu10CEH0epspdnbFZge1hMMyts7_U_/view?usp=sharing)|
 |SDTrack-Tiny|[Link](https://drive.google.com/file/d/1mdA4pKtX4AOY4EzsRnlgO3dX-l1mUh8K/view?usp=sharing)|[Link](https://drive.google.com/file/d/1GVKxlTXcSRynsSlSVfu3mpOjCTXz_JVj/view?usp=sharing)|[Link](https://drive.google.com/file/d/1sB1ziRP7QEioZayfWuEn54VgYfE8MXRY/view?usp=sharing)|
+|SDTrack-Base|[Link](https://drive.google.com/file/d/17l5gDpxBerAFA1f3Y2h6iGeHvIA5r07X/view?usp=sharing)|[Link](https://drive.google.com/file/d/1bDi6SGok2Tiq57dMV2BqIyw1TZsRWudq/view?usp=sharing)|[Link](https://drive.google.com/file/d/1VBqlWbzGnaKO8cBShTvWnWj0ZozUdXYt/view?usp=sharing)|
 
