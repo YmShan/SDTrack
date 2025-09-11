@@ -79,7 +79,7 @@ All spike data are constructed using the [video2spike_3C.py](https://github.com/
 
 Please kindly note the storage space requirements. The compressed versions of the three datasets are 20.98GB, 63.12GB, and 111.56GB, respectively, with their uncompressed sizes being 26GB, 89GB, and 139GB, respectively.
 
-## Download the pre-trained weights from ImageNet-1K.
+## Download the pre-trained weights on ImageNet-1K.
 1. Download [SDTrack-Tiny](https://drive.google.com/file/d/1OcXHCnibEv9F40gw5VwGO90adtE6E0Ik/view?usp=sharing) and [SDTrack-Base](https://drive.google.com/file/d/1maJd0td46oxHACeBk2Vc90a__VyDAeWj/view?usp=sharing).
 2. Create the directory SDTrack/**pretrained_models** and place the two downloaded weight files into this directory.
 
