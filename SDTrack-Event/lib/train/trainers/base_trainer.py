@@ -192,7 +192,7 @@ class BaseTrainer:
 
         # Load network
         checkpoint_dict = torch.load(checkpoint_path, map_location='cpu')
-
+        checkpoint_dict['net_type'] = 'SDTrack'
         assert net_type == checkpoint_dict['net_type'], 'Network is not of correct type.'
 
         if fields is None:
