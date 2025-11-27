@@ -10,50 +10,6 @@ from functools import partial
 import math
 import os
 
-# class Quant(torch.autograd.Function):
-#     @staticmethod
-#     @torch.cuda.amp.custom_fwd
-#     def forward(ctx, i, min_value, max_value):
-#         ctx.min = min_value
-#         ctx.max = max_value
-#         ctx.save_for_backward(i)
-#         return torch.round(torch.clamp(i, min=min_value, max=max_value))
-
-#     @staticmethod
-#     @torch.cuda.amp.custom_fwd
-#     def backward(ctx, grad_output):
-#         grad_input = grad_output.clone()
-#         i, = ctx.saved_tensors
-#         grad_input[i < ctx.min] = 0
-#         grad_input[i > ctx.max] = 0
-#         return grad_input, None, None
-
-# class MultiSpike(nn.Module):
-#     def __init__(
-#         self,
-#         min_value=0,
-#         max_value=4,
-#         Norm=None,
-#         ):
-#         super().__init__()
-#         if Norm == None:
-#             self.Norm = max_value
-#         else:
-#             self.Norm = Norm
-#         self.min_value = min_value
-#         self.max_value = max_value
-    
-#     @staticmethod
-#     def spike_function(x, min_value, max_value):
-#         return Quant.apply(x, min_value, max_value)
-        
-#     def __repr__(self):
-#         return f"MultiSpike(Max_Value={self.max_value}, Min_Value={self.min_value}, Norm={self.Norm})"     
-
-#     def forward(self, x): # B C H W
-#         return self.spike_function(x, min_value=self.min_value, max_value=self.max_value) / (self.Norm)
-    
-# 计算firing_rate的神经元
 class Quant(torch.autograd.Function):
     @staticmethod
     @torch.cuda.amp.custom_fwd
@@ -71,7 +27,7 @@ class Quant(torch.autograd.Function):
         grad_input[i < ctx.min] = 0
         grad_input[i > ctx.max] = 0
         return grad_input, None, None
-    
+
 class MultiSpike(nn.Module):
     def __init__(
         self,
@@ -86,8 +42,7 @@ class MultiSpike(nn.Module):
             self.Norm = Norm
         self.min_value = min_value
         self.max_value = max_value
-        self.fr = []
-
+    
     @staticmethod
     def spike_function(x, min_value, max_value):
         return Quant.apply(x, min_value, max_value)
@@ -96,16 +51,61 @@ class MultiSpike(nn.Module):
         return f"MultiSpike(Max_Value={self.max_value}, Min_Value={self.min_value}, Norm={self.Norm})"     
 
     def forward(self, x): # B C H W
+        return self.spike_function(x, min_value=self.min_value, max_value=self.max_value) / (self.Norm)
+    
+# # 计算firing_rate的神经元
+# class Quant(torch.autograd.Function):
+#     @staticmethod
+#     @torch.cuda.amp.custom_fwd
+#     def forward(ctx, i, min_value, max_value):
+#         ctx.min = min_value
+#         ctx.max = max_value
+#         ctx.save_for_backward(i)
+#         return torch.round(torch.clamp(i, min=min_value, max=max_value))
+
+#     @staticmethod
+#     @torch.cuda.amp.custom_fwd
+#     def backward(ctx, grad_output):
+#         grad_input = grad_output.clone()
+#         i, = ctx.saved_tensors
+#         grad_input[i < ctx.min] = 0
+#         grad_input[i > ctx.max] = 0
+#         return grad_input, None, None
+    
+# class MultiSpike(nn.Module):
+#     def __init__(
+#         self,
+#         min_value=0,
+#         max_value=4,
+#         Norm=None,
+#         ):
+#         super().__init__()
+#         if Norm == None:
+#             self.Norm = max_value
+#         else:
+#             self.Norm = Norm
+#         self.min_value = min_value
+#         self.max_value = max_value
+#         self.fr = []
+
+#     @staticmethod
+#     def spike_function(x, min_value, max_value):
+#         return Quant.apply(x, min_value, max_value)
         
-        spike = self.spike_function(x, min_value=self.min_value, max_value=self.max_value)
-        count_025 = torch.sum((spike == 1 / self.Norm).to(torch.int)).item()
-        count_050 = torch.sum((spike == 2 / self.Norm).to(torch.int)).item()
-        count_075 = torch.sum((spike == 3 / self.Norm).to(torch.int)).item()
-        count_1 = torch.sum((spike == 4 / self.Norm).to(torch.int)).item()
+#     def __repr__(self):
+#         return f"MultiSpike(Max_Value={self.max_value}, Min_Value={self.min_value}, Norm={self.Norm})"     
 
-        self.fr.append((count_025 * 1 + count_050 * 2 + count_075 * 3 + count_1 * 4) / (spike.numel() * self.Norm))
+#     def forward(self, x): # B C H W
+        
+#         spike = self.spike_function(x, min_value=self.min_value, max_value=self.max_value)
+#         count_025 = torch.sum((spike == 1 / self.Norm).to(torch.int)).item()
+#         count_050 = torch.sum((spike == 2 / self.Norm).to(torch.int)).item()
+#         count_075 = torch.sum((spike == 3 / self.Norm).to(torch.int)).item()
+#         count_1 = torch.sum((spike == 4 / self.Norm).to(torch.int)).item()
 
-        return spike / (self.Norm)
+#         self.fr.append((count_025 * 1 + count_050 * 2 + count_075 * 3 + count_1 * 4) / (spike.numel() * self.Norm))
+
+#         return spike / (self.Norm)
 
 class BNAndPadLayer(nn.Module):
     def __init__(
@@ -561,18 +561,18 @@ class MS_Attention_linear(nn.Module):
         # print('xxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 
         x = q @ k.transpose(-2, -1)
-        # x = (x @ v) * (self.scale*2)
+        x = (x @ v) * (self.scale*2)
         # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         # qk_cache的firing rate
 
-        total_sum = torch.sum(x) * 4
-        self.qk.append(float(total_sum))
+        # total_sum = torch.sum(x) * 4
+        # self.qk.append(float(total_sum))
 
-        x = (x @ v)
+        # x = (x @ v)
 
-        total_sum = torch.sum(x) * 4
-        self.qkv.append(float(total_sum))
-        x = x * (self.scale*2)        # [2, 8, 324, 128]
+        # total_sum = torch.sum(x) * 4
+        # self.qkv.append(float(total_sum))
+        # x = x * (self.scale*2)        # [2, 8, 324, 128]
 
         # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
