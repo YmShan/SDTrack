@@ -151,10 +151,11 @@ class Tracker:
             prev_output = OrderedDict(out)
             _store_outputs(out, {'time': time.time() - start_time})
 
+      
+        # Save firing rate
+        # First uncomment this section and run one test
+        # After the first run, change the MultiSpike import above to backbone and run again
         # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        # 保存firing rate
-        # 首先解除这一部分的缩进,跑一次测试
-        # 跑完第一次把上面的MultiSpike的import换成backbone的再跑一次
         # fr_dict = {}
         # for name, module in tracker.network.named_modules():  
         #     if isinstance(module, MultiSpike):
@@ -163,22 +164,22 @@ class Tracker:
         # import json
         # import random
         # import string
-        # # 生成一个随机的乱码字符串作为文件名
+        # # Generate a random string as filename
         # def generate_random_filename(length=10):
         #     return ''.join(random.choices(string.ascii_letters + string.digits, k=length)) + ".txt"
-        # # 文件路径的前缀
+        # # File path prefix
         # folder_path = './fe108_fr/'
-        # # 确保目标文件夹存在
+        # # Ensure target folder exists
         # os.makedirs(folder_path, exist_ok=True)
-        # # 生成随机文件名
+        # # Generate random filename
         # random_filename = generate_random_filename()
-        # # 生成完整的文件路径
+        # # Generate complete file path
         # file_path = os.path.join(folder_path, random_filename)
-        # # 生成随机文件名
+        # # Generate random filename
         # random_filename = generate_random_filename()
         # with open(file_path, 'w') as f:
         #     json.dump(fr_dict, f, ensure_ascii=False, indent=4)
-        # # 存qk和qkv
+        # # Save qk and qkv
         # qk = {}
         # qkv = {}
         # for name, module in tracker.network.named_modules():
@@ -188,21 +189,21 @@ class Tracker:
         # import json
         # import random
         # import string
-        # # 生成一个随机的乱码字符串作为文件名
+        # # Generate a random string as filename
         # def generate_random_filename(length=10):
         #     return ''.join(random.choices(string.ascii_letters + string.digits, k=length)) + ".txt"
-        # # 文件路径的前缀
+        # # File path prefix
         # folder_path = './qk_fr/'
         # folder_path_qkv = './qkv_fr/'
-        # # 确保目标文件夹存在
+        # # Ensure target folder exists
         # os.makedirs(folder_path, exist_ok=True)
         # os.makedirs(folder_path_qkv, exist_ok=True)
-        # # 生成随机文件名
+        # # Generate random filename
         # random_filename = generate_random_filename()
-        # # 生成完整的文件路径
+        # # Generate complete file path
         # file_path = os.path.join(folder_path, random_filename)
         # file_path_qkv = os.path.join(folder_path_qkv, random_filename)
-        # # 生成随机文件名
+        # # Generate random filename
         # random_filename = generate_random_filename()
         # with open(file_path, 'w') as f:
         #     json.dump(qk, f, ensure_ascii=False, indent=4)
