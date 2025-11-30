@@ -81,11 +81,11 @@ Please kindly note the storage space requirements. The compressed versions of th
 
 ## Download the pre-trained weights on ImageNet-1K.
 1. Download [SDTrack-Tiny](https://drive.google.com/file/d/1OcXHCnibEv9F40gw5VwGO90adtE6E0Ik/view?usp=sharing) and [SDTrack-Base](https://drive.google.com/file/d/1maJd0td46oxHACeBk2Vc90a__VyDAeWj/view?usp=sharing).
-2. Create the directory SDTrack/**pretrained_models** and place the two downloaded weight files into this directory.
+2. Create the directory SDTrack-Spike/**pretrained_models** and place the two downloaded weight files into this directory.
 
 ## Modify the settings required for training and testing.
-1. The training path configuration file is located at `SDTrack/lib/train/admin/local.py`.
-2. The testing path configuration file is located at `SDTrack/lib/test/evaluation/local.py`.
+1. The training path configuration file is located at `SDTrack-Spike/lib/train/admin/local.py`.
+2. The testing path configuration file is located at `SDTrack-Spike/lib/test/evaluation/local.py`.
 
 The entire modification process consists of two steps. The first step is to replace `/data1/users/xxx/SDTrack-Spike` with your file path. The second step is to align the dataset paths with your dataset storage locations:
 ```
