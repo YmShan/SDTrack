@@ -73,8 +73,8 @@ python YOUR_VisEvent_PATH/GTP_VisEvent.py --trans_folder 0 --source_dir YOUR_Vis
 2. Create the directory SDTrack/**pretrained_models** and place the two downloaded weight files into this directory.
 
 ## Modify the settings required for training and testing.
-1. The training path configuration file is located at `SDTrack/lib/train/admin/local.py`.
-2. The testing path configuration file is located at `SDTrack/lib/test/evaluation/local.py`.
+1. The training path configuration file is located at `SDTrack-Event/lib/train/admin/local.py`.
+2. The testing path configuration file is located at `SDTrack-Event/lib/test/evaluation/local.py`.
 
 ## Training
 ```
@@ -103,7 +103,7 @@ bash test_base_felt.sh
 ```
 
 ## Before Running SDTrack-Tiny/Base On FELT Dataset.
-1. **Transform Configuration Adjustment** Modify the data augmentation settings in the '/SDTrack/lib/train/base_functions.py' path to:
+1. **Transform Configuration Adjustment** Modify the data augmentation settings in the '/SDTrack-Event/lib/train/base_functions.py' path to:
 ```
 transform_train = tfm.Transform(tfm.ToTensor(), 
                                tfm.Normalize(mean=cfg.DATA.MEAN, std=cfg.DATA.STD)
@@ -112,7 +112,7 @@ transform_val = tfm.Transform(tfm.ToTensor(),
                               tfm.Normalize(mean=cfg.DATA.MEAN, std=cfg.DATA.STD)
                               )
 ```
-2. **ToTensor Class Modification** Revise the transform_image method in the ToTensor class located at '/SDTrack/lib/train/data/transforms.py' to:
+2. **ToTensor Class Modification** Revise the transform_image method in the ToTensor class located at '/SDTrack-Event/lib/train/data/transforms.py' to:
 ```
 def transform_image(self, image):
     # handle numpy array
@@ -126,7 +126,7 @@ def transform_image(self, image):
     else:
         return image
 ```
-3. **Testing Phase Modification** Alter the Preprocessor class in '/SDTrack/lib/test/tracker/data_utils.py' to:
+3. **Testing Phase Modification** Alter the Preprocessor class in '/SDTrack-Event/lib/test/tracker/data_utils.py' to:
 ```
 class Preprocessor(object):
     def __init__(self):
