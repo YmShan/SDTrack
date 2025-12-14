@@ -177,8 +177,10 @@ class Preprocessor(object):
 ### Weights
 |  | FE108 | FELT | VisEvent |
 |----------|----------|----------|----------|
-| SDTrack-Tiny    |  [link](https://drive.google.com/file/d/1Hal0RcEgYKuqBiUFwPHa8f2bisboIp80/view?usp=sharing)  |  [link](https://drive.google.com/file/d/1GoGljfudnjSw7bvW53bpPy2jv2-IZstd/view?usp=sharing)  | [link](https://drive.google.com/file/d/1rbZT2DBMeKrWZ8ORwNDz9fBKoMqRGN-_/view?usp=sharing)   |
-| SDTrack-Base    | [link](https://drive.google.com/file/d/1tnJme3hugllA8xAIODoARzKaOkQKh6jr/view?usp=sharing)   | [link](https://drive.google.com/file/d/18deLeGd2hWOtdU2C6YoxHrSTseIPfKyv/view?usp=sharing)   | [link](https://drive.google.com/file/d/1TkG_InvhKnnoUCUQC3r-6G2FROGWLYoa/view?usp=sharing)   |
+| SDTrack-Tiny (T&times;D=1&times;4)    |  [link](https://drive.google.com/file/d/1Hal0RcEgYKuqBiUFwPHa8f2bisboIp80/view?usp=sharing)  |  [link](https://drive.google.com/file/d/1GoGljfudnjSw7bvW53bpPy2jv2-IZstd/view?usp=sharing)  | [link](https://drive.google.com/file/d/1rbZT2DBMeKrWZ8ORwNDz9fBKoMqRGN-_/view?usp=sharing)   |
+| SDTrack-Tiny (T&times;D=2&times;2)    |  [link](https://drive.google.com/file/d/1CYAGyWltrRbCt9xA2ooOTACgqvTq0tYV/view?usp=sharing)  |  [link](https://drive.google.com/file/d/1tzEVQuwRrb1kfvCXTH4ZZ0JtAw7J36Hm/view?usp=sharing)  | [link](https://drive.google.com/file/d/1zdRHCDtx6XKYFEEXuEmf9SRYF4UzSt5l/view?usp=sharing)   |
+| SDTrack-Tiny (T&times;D=4&times;1)    |  [link](https://drive.google.com/file/d/1oyx4PQoh1J3vJzapPlRuIaozuDUsGRlw/view?usp=sharing)  |  [link](https://drive.google.com/file/d/19g4o5kLzXP-AswhYMaBMTYTIdbHTi2bH/view?usp=sharing)  | [link](https://drive.google.com/file/d/1oSzgTe6qlY1dv9pzemKaQPYbpRjEMzK4/view?usp=sharing)   |
+| SDTrack-Base (T&times;D=1&times;4)    | [link](https://drive.google.com/file/d/1tnJme3hugllA8xAIODoARzKaOkQKh6jr/view?usp=sharing)   | [link](https://drive.google.com/file/d/18deLeGd2hWOtdU2C6YoxHrSTseIPfKyv/view?usp=sharing)   | [link](https://drive.google.com/file/d/1TkG_InvhKnnoUCUQC3r-6G2FROGWLYoa/view?usp=sharing)   |
 ### The test results of our method and other methods mentioned in the paper.
 | FE108 | FELT | VisEvent |
 |----------|----------|----------|
