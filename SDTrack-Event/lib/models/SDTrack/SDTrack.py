@@ -108,7 +108,7 @@ def build_SDTrack(cfg, training=True):
 
         hidden_dim = 360            # lite 360    base 768
         patch_start_index = 1
-        checkpoint = torch.load(env_settings().pretrained_networks + '/SDTrack_tiny.pth', map_location="cpu")
+        checkpoint = torch.load(env_settings().pretrained_networks + '/SDTrack-tiny-1x4.pth', map_location="cpu")
 
     elif cfg.MODEL.BACKBONE.TYPE == 'base':
         backbone = base()
@@ -116,7 +116,7 @@ def build_SDTrack(cfg, training=True):
         hidden_dim = 768            # lite 360    base 768
         patch_start_index = 1
 
-        checkpoint = torch.load(env_settings().pretrained_networks + '/SDTrack_base.pth', map_location="cpu")
+        checkpoint = torch.load(env_settings().pretrained_networks + '/SDTrack-base-1x4.pth', map_location="cpu")
 
     else:
         raise NotImplementedError
@@ -149,3 +149,4 @@ def build_SDTrack(cfg, training=True):
 
 
     return model
+
