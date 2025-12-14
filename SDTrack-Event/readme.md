@@ -69,7 +69,7 @@ python YOUR_VisEvent_PATH/GTP_VisEvent.py --trans_folder 0 --source_dir YOUR_Vis
 ```
 
 ## Download the pre-trained weights on ImageNet-1K.
-1. Download [SDTrack-Tiny](https://drive.google.com/file/d/1OcXHCnibEv9F40gw5VwGO90adtE6E0Ik/view?usp=sharing) and [SDTrack-Base](https://drive.google.com/file/d/1maJd0td46oxHACeBk2Vc90a__VyDAeWj/view?usp=sharing).
+1. Download [SDTrack-Tiny](https://drive.google.com/file/d/1OcXHCnibEv9F40gw5VwGO90adtE6E0Ik/view?usp=sharing) , [SDTrack-Tiny-2x2](https://drive.google.com/file/d/1Qi6LXyLz8dRq8yZ1CSKbH3c-HDflOgfh/view?usp=sharing), [SDTrack-Tiny-4x1](https://drive.google.com/file/d/1VNVtXBB6URDQMzo7TMKUYyQLlCCr6e8k/view?usp=sharing), and [SDTrack-Base](https://drive.google.com/file/d/1maJd0td46oxHACeBk2Vc90a__VyDAeWj/view?usp=sharing).
 2. Create the directory SDTrack/**pretrained_models** and place the two downloaded weight files into this directory.
 
 ## Modify the settings required for training and testing.
