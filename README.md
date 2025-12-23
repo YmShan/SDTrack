@@ -10,6 +10,10 @@ For the **event camera** component, please refer to [SDTrack-Event](https://gith
 
 For the **spike camera** component, please refer to [SDTrack-Spike](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Spike/readme.md).
 
+## News
+2025/3/9 SDTrack preprint is now available on [arXiv](https://arxiv.org/abs/2503.08703)!
+
+
 ## Tracker Overview
 <div align="center">
   <img src="https://github.com/YmShan/SDTrack/blob/main/source/main_pic.png">
