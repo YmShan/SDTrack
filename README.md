@@ -6,7 +6,7 @@
 
 ## We establish comprehensive benchmarks for event-based camera and spiking-camera tracking.
 
-For the **event camera** component, please refer to [SDTrack-Event](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Event/readme.md).
+For the **event-based camera** component, please refer to [SDTrack-Event](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Event/readme.md).
 
 For the **spike camera** component, please refer to [SDTrack-Spike](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Spike/readme.md).
 
