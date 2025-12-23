@@ -17,6 +17,7 @@ For the **spike camera** component, please refer to [SDTrack-Spike](https://gith
 
 - **2025-08-14** :trophy: We extend SDTrack to spiking cameras, introduce three datasets generated using spiking-camera simulators, and provide the first tracking baseline for spiking cameras. This work received the **Best Dataset & Benchmark Award** (sole winner) in the **IJCAI 2025-SpikeCV–Wuji Challenge (Dataset & Benchmark Track)**, along with a **$1,500 prize**. We thank the SpikeCV organizing committee.
 
+- **2025-09** At **NeurIPS 2026**, **4** accepted papers ([Nips-1](https://arxiv.org/pdf/2509.24266), [Nips-2](https://openreview.net/forum?id=nG45z7lJ7D), [Nips-3](https://arxiv.org/pdf/2510.21403), [Nips-4](https://arxiv.org/pdf/2505.20834?)) built on our model and adopted it as a baseline. Congratulations to the authors, and thank you for your interest!
 
 ## Tracker Overview
 <div align="center">
