@@ -4,14 +4,18 @@
 
 # SDTrack: A Baseline for Neuromorphic Tracking via Spiking Neural Networks
 
-## We have established comprehensive evaluation benchmarks for both event-based camera and spike-based camera tracking methodologies.
+## We establish comprehensive benchmarks for event-based camera and spiking-camera tracking.
 
 For the **event camera** component, please refer to [SDTrack-Event](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Event/readme.md).
 
 For the **spike camera** component, please refer to [SDTrack-Spike](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Spike/readme.md).
 
 ## News
-2025/3/9 SDTrack preprint is now available on [arXiv](https://arxiv.org/abs/2503.08703)!
+- **2025-03-09** SDTrack preprint is now available on [arXiv](https://arxiv.org/abs/2503.08703).
+
+- **2025-03-15** SDTrack code is now available.
+
+- **2025-08-14** :trophy: We extend SDTrack to spiking cameras, introduce three datasets generated using spiking-camera simulators, and provide the first tracking baseline for spiking cameras. This work received the **Best Dataset & Benchmark Award** (sole winner) in the **IJCAI 2025-SpikeCV–Wuji Challenge (Dataset & Benchmark Track)**, along with a **$1,500 prize**. We thank the SpikeCV organizing committee.
 
 
 ## Tracker Overview
