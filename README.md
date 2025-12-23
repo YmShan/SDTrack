@@ -10,14 +10,29 @@ For the **event-based camera** component, please refer to [SDTrack-Event](https:
 
 For the **spike camera** component, please refer to [SDTrack-Spike](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Spike/readme.md).
 
+
 ## News
-- **2025-03-09**   SDTrack preprint is now available on [arXiv](https://arxiv.org/abs/2503.08703).
+***2025-03-09*** 
 
-- **2025-03-15**   SDTrack code is now available.
+SDTrack preprint is now available on [arXiv](https://arxiv.org/abs/2503.08703).
 
-- **2025-08-14**   :trophy: We extend SDTrack to spiking cameras, introduce three datasets generated using spiking-camera simulators, and provide the first tracking baseline for spiking cameras. This work received the **Best Dataset & Benchmark Award** (sole winner) in the **IJCAI 2025-SpikeCV–Wuji Challenge (Dataset & Benchmark Track)**, along with a **$1,500 prize**. We thank the SpikeCV organizing committee.
+***2025-03-15*** 
 
-- **2025-09-19**   At **NeurIPS 2026**, **4** accepted papers ([Nips-1](https://arxiv.org/pdf/2509.24266), [Nips-2](https://openreview.net/forum?id=nG45z7lJ7D), [Nips-3](https://arxiv.org/pdf/2510.21403), [Nips-4](https://arxiv.org/pdf/2505.20834?)) built upon our model or adopted our reported baseline. Congratulations to the authors, and thank you for your interest!
+SDTrack code is now available.
+
+***2025-08-14*** 
+
+:trophy: We extended SDTrack to spiking cameras, introduced three datasets generated using spiking-camera simulators, and provided the first tracking baseline for spiking cameras. This work received the **Best Dataset & Benchmark Award** (sole winner) in the **IJCAI 2025 SpikeCV–Wuji Challenge (Dataset & Benchmark Track)**, along with a **$1,500 prize**. We thank the SpikeCV organizing committee.
+
+***2025-09-19*** 
+
+At **NeurIPS 2026**, **4** accepted papers ([NeurIPS-1](https://arxiv.org/pdf/2509.24266), [NeurIPS-2](https://openreview.net/forum?id=nG45z7lJ7D), [NeurIPS-3](https://arxiv.org/pdf/2510.21403), [NeurIPS-4](https://arxiv.org/pdf/2505.20834)) built upon our model or adopted our reported baseline. Congratulations to the authors, and thank you for your interest!
+  
+***2025-12-19*** 
+
+A neuromorphic tracking system built upon the DAVIS346 camera, the SDTrack pipeline, and Lynxi chips was showcased at the SLAI (Shenzhen Loop Area Institute) – LIMA (Language, Intelligence and Machines) Center Open Day. [Link](https://mp.weixin.qq.com/s/nXbek5t8Wg3o_vyoZt1iNQ)
+
+
 
 ## Tracker Overview
 <div align="center">
