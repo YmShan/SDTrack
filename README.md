@@ -87,4 +87,4 @@ warnings.filterwarnings("ignore", category=UserWarning)
 [rank0]:        (2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
 [rank0]:        WeightsUnpickler error: Unsupported global: GLOBAL argparse.Namespace was not an allowed global by default. Please use `torch.serialization.add_safe_globals([argparse.Namespace])` or the `torch.serialization.safe_globals([argparse.Namespace])` context manager to allowlist this global if you trust this class/function.
 ```
-Solution: Add the parameter `weights_only=False` to all `torch.load` functions:
+Solution: Add the parameter `weights_only=False` to all `torch.load` functions.
