@@ -80,3 +80,11 @@ Add the code in the top of '/SDTrack/lib/train/run_training.py'
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 ```
+
+### 4. Error with newer PyTorch versions: `weights_only` parameter in `torch.load`
+```python
+[rank0]:        (1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+[rank0]:        (2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+[rank0]:        WeightsUnpickler error: Unsupported global: GLOBAL argparse.Namespace was not an allowed global by default. Please use `torch.serialization.add_safe_globals([argparse.Namespace])` or the `torch.serialization.safe_globals([argparse.Namespace])` context manager to allowlist this global if you trust this class/function.
+```
+Solution: Add the parameter `weights_only=False` to all `torch.load` functions:
