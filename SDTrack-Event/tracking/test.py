@@ -9,10 +9,11 @@ if prj_path not in sys.path:
 from lib.test.evaluation import get_dataset
 from lib.test.evaluation.running import run_dataset
 from lib.test.evaluation.tracker import Tracker
+import importlib
 
 
 def run_tracker(tracker_name, tracker_param, run_id=None, dataset_name='otb', sequence=None, debug=0, threads=0,
-                num_gpus=8):
+                num_gpus=8, cfg=None):
     """Run tracker on sequence or dataset.
     args:
         tracker_name: Name of tracking method.
@@ -29,7 +30,7 @@ def run_tracker(tracker_name, tracker_param, run_id=None, dataset_name='otb', se
     if sequence is not None:
         dataset = [dataset[sequence]]
 
-    trackers = [Tracker(tracker_name, tracker_param, dataset_name, run_id)]
+    trackers = [Tracker(tracker_name, tracker_param, dataset_name, run_id, cfg=cfg)]
 
     run_dataset(dataset, trackers, debug, threads, num_gpus=num_gpus)
 
@@ -52,9 +53,11 @@ def main():
     except:
         seq_name = args.sequence
 
+    param_module = importlib.import_module('lib.test.parameter.{}'.format(args.tracker_name))
+    params = param_module.parameters(args.tracker_param)
 
     run_tracker(args.tracker_name, args.tracker_param, args.runid, args.dataset_name, seq_name, args.debug,
-                args.threads, num_gpus=args.num_gpus)
+                args.threads, num_gpus=args.num_gpus, cfg=params.cfg)
 
 
 if __name__ == '__main__':
