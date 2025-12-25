@@ -14,6 +14,7 @@ import os
 from lib.test.tracker.data_utils import Preprocessor
 from lib.utils.box_ops import clip_box
 from lib.utils.ce_utils import generate_mask_cond
+from lib.utils.misc import NestedTensor
 
 
 class SDTrack(BaseTracker):
@@ -48,67 +49,269 @@ class SDTrack(BaseTracker):
         self.z_dict1 = {}
 
     def initialize(self, image, info: dict):
-        # forward the template once
-        z_patch_arr, resize_factor, z_amask_arr = sample_target(image, info['init_bbox'], self.params.template_factor,
-                                                    output_sz=self.params.template_size)
-        self.z_patch_arr = z_patch_arr
-        template = self.preprocessor.process(z_patch_arr, z_amask_arr)
-        with torch.no_grad():
-            self.z_dict1 = template
+        if self.cfg.MODEL.T == 1:
+            # forward the template once
+            z_patch_arr, resize_factor, z_amask_arr = sample_target(image, info['init_bbox'], self.params.template_factor,
+                                                        output_sz=self.params.template_size)
+            self.z_patch_arr = z_patch_arr
+            template = self.preprocessor.process(z_patch_arr, z_amask_arr)
+            with torch.no_grad():
+                self.z_dict1 = template
 
-        self.box_mask_z = None
-        if self.cfg.MODEL.BACKBONE.CE_LOC:
-            template_bbox = self.transform_bbox_to_crop(info['init_bbox'], resize_factor,
-                                                        template.tensors.device).squeeze(1)
-            self.box_mask_z = generate_mask_cond(self.cfg, 1, template.tensors.device, template_bbox)
+            self.box_mask_z = None
+            if self.cfg.MODEL.BACKBONE.CE_LOC:
+                template_bbox = self.transform_bbox_to_crop(info['init_bbox'], resize_factor,
+                                                            template.tensors.device).squeeze(1)
+                self.box_mask_z = generate_mask_cond(self.cfg, 1, template.tensors.device, template_bbox)
 
-        # save states
-        self.state = info['init_bbox']
-        self.frame_id = 0
-        if self.save_all_boxes:
-            '''save all predicted boxes'''
-            all_boxes_save = info['init_bbox'] * self.cfg.MODEL.NUM_OBJECT_QUERIES
-            return {"all_boxes": all_boxes_save}
+            # save states
+            self.state = info['init_bbox']
+            self.frame_id = 0
+            if self.save_all_boxes:
+                '''save all predicted boxes'''
+                all_boxes_save = info['init_bbox'] * self.cfg.MODEL.NUM_OBJECT_QUERIES
+                return {"all_boxes": all_boxes_save}
+
+        elif self.cfg.MODEL.T == 2:
+            z_patch_arr = [0.0, 0.0]
+            z_amask_arr = [0.0, 0.0]
+            template = [0.0, 0.0]
+
+
+            z_patch_arr[0], resize_factor, z_amask_arr[0] = sample_target(image[0], info['init_bbox'], self.params.template_factor,
+                                                        output_sz=self.params.template_size)
+            z_patch_arr[1], resize_factor, z_amask_arr[1] = sample_target(image[1], info['init_bbox'], self.params.template_factor,
+                                                        output_sz=self.params.template_size)
+            self.z_patch_arr = z_patch_arr[0]
+
+            template[0] = self.preprocessor.process(z_patch_arr[0], z_amask_arr[0])
+            template[1] = self.preprocessor.process(z_patch_arr[1], z_amask_arr[1])
+
+            tensor = torch.cat([template[0].tensors.unsqueeze(0), template[1].tensors.unsqueeze(0)], dim=0)
+            mask = torch.cat([template[0].mask.unsqueeze(0), template[1].mask.unsqueeze(0)], dim=0)
+            
+            template = NestedTensor(tensor, mask)
+
+            with torch.no_grad():
+                self.z_dict1 = template
+
+            self.box_mask_z = None
+            if self.cfg.MODEL.BACKBONE.CE_LOC:
+                template_bbox = self.transform_bbox_to_crop(info['init_bbox'], resize_factor,
+                                                            template.tensors.device).squeeze(1)
+                self.box_mask_z = generate_mask_cond(self.cfg, 1, template.tensors.device, template_bbox)
+
+            # save states
+            self.state = info['init_bbox']
+            self.frame_id = 0
+            if self.save_all_boxes:
+                '''save all predicted boxes'''
+                all_boxes_save = info['init_bbox'] * self.cfg.MODEL.NUM_OBJECT_QUERIES
+                return {"all_boxes": all_boxes_save}
+
+        elif self.cfg.MODEL.T == 4:
+            z_patch_arr = [0.0, 0.0, 0.0, 0.0]
+            z_amask_arr = [0.0, 0.0, 0.0, 0.0]
+            template = [0.0, 0.0, 0.0, 0.0]
+
+
+            z_patch_arr[0], resize_factor, z_amask_arr[0] = sample_target(image[0], info['init_bbox'], self.params.template_factor,
+                                                        output_sz=self.params.template_size)
+            z_patch_arr[1], resize_factor, z_amask_arr[1] = sample_target(image[1], info['init_bbox'], self.params.template_factor,
+                                                        output_sz=self.params.template_size)
+            z_patch_arr[2], resize_factor, z_amask_arr[2] = sample_target(image[2], info['init_bbox'], self.params.template_factor,
+                                                        output_sz=self.params.template_size)
+            z_patch_arr[3], resize_factor, z_amask_arr[3] = sample_target(image[3], info['init_bbox'], self.params.template_factor,
+                                                        output_sz=self.params.template_size)
+
+            self.z_patch_arr = z_patch_arr[0]
+
+            template[0] = self.preprocessor.process(z_patch_arr[0], z_amask_arr[0])
+            template[1] = self.preprocessor.process(z_patch_arr[1], z_amask_arr[1])
+            template[2] = self.preprocessor.process(z_patch_arr[2], z_amask_arr[2])
+            template[3] = self.preprocessor.process(z_patch_arr[3], z_amask_arr[3])
+
+            tensor = torch.cat([template[0].tensors.unsqueeze(0), template[1].tensors.unsqueeze(0), template[2].tensors.unsqueeze(0), template[3].tensors.unsqueeze(0)], dim=0)
+            mask = torch.cat([template[0].mask.unsqueeze(0), template[1].mask.unsqueeze(0), template[2].mask.unsqueeze(0), template[3].mask.unsqueeze(0)], dim=0)
+
+            template = NestedTensor(tensor, mask)
+
+            with torch.no_grad():
+                self.z_dict1 = template
+
+            self.box_mask_z = None
+            if self.cfg.MODEL.BACKBONE.CE_LOC:
+                template_bbox = self.transform_bbox_to_crop(info['init_bbox'], resize_factor,
+                                                            template.tensors.device).squeeze(1)
+                self.box_mask_z = generate_mask_cond(self.cfg, 1, template.tensors.device, template_bbox)
+
+            # save states
+            self.state = info['init_bbox']
+            self.frame_id = 0
+            if self.save_all_boxes:
+                '''save all predicted boxes'''
+                all_boxes_save = info['init_bbox'] * self.cfg.MODEL.NUM_OBJECT_QUERIES
+                return {"all_boxes": all_boxes_save}
 
     def track(self, image, info: dict = None):
-        H, W, _ = image.shape
-        self.frame_id += 1
-        x_patch_arr, resize_factor, x_amask_arr = sample_target(image, self.state, self.params.search_factor,
-                                                                output_sz=self.params.search_size)  # (x1, y1, w, h)
-        search = self.preprocessor.process(x_patch_arr, x_amask_arr)
+        if self.cfg.MODEL.T == 1:
+            H, W, _ = image.shape
+            self.frame_id += 1
+            x_patch_arr, resize_factor, x_amask_arr = sample_target(image, self.state, self.params.search_factor,
+                                                                    output_sz=self.params.search_size)  # (x1, y1, w, h)
+            search = self.preprocessor.process(x_patch_arr, x_amask_arr)
 
-        with torch.no_grad():
-            x_dict = search
-            # merge the template and the search
-            # run the transformer
-            out_dict = self.network.forward(
-                template=self.z_dict1.tensors, search=x_dict.tensors)
+            with torch.no_grad():
+                x_dict = search
+                # merge the template and the search
+                # run the transformer
+                out_dict = self.network.forward(
+                    template=self.z_dict1.tensors, search=x_dict.tensors)
 
-        # ***********************************************************  Center 头 ***************************************************
+            # ***********************************************************  Center 头 ***************************************************
 
-        # add hann windows
-        pred_score_map = out_dict['score_map']
+            # add hann windows
+            pred_score_map = out_dict['score_map']
 
-        # response = self.output_window * pred_score_map
-        response = pred_score_map
+            # response = self.output_window * pred_score_map
+            response = pred_score_map
 
 
-        pred_boxes = self.network.box_head.cal_bbox(response, out_dict['size_map'], out_dict['offset_map'])
-        pred_boxes = pred_boxes.view(-1, 4)
-        # Baseline: Take the mean of all pred boxes as the final result
-        pred_box = (pred_boxes.mean(
-            dim=0) * self.params.search_size / resize_factor).tolist()  # (cx, cy, w, h) [0,1]
-        # get the final box result
-        self.state = clip_box(self.map_box_back(pred_box, resize_factor), H, W, margin=10)
-        # ***********************************************************  Center 头 ***************************************************
-        # ***********************************************************  Corner 头 ***************************************************
-        # pred_boxes = out_dict['pred_boxes']
-        # pred_boxes = pred_boxes.view(-1, 4)
-        # pred_box = (pred_boxes.mean(
-        #     dim=0) * self.params.search_size / resize_factor).tolist()  # (cx, cy, w, h) [0,1]
-        # # get the final box result
-        # self.state = clip_box(self.map_box_back(pred_box, resize_factor), H, W, margin=10)
-        # ***********************************************************  Corner 头 ***************************************************
+            pred_boxes = self.network.box_head.cal_bbox(response, out_dict['size_map'], out_dict['offset_map'])
+            pred_boxes = pred_boxes.view(-1, 4)
+            # Baseline: Take the mean of all pred boxes as the final result
+            pred_box = (pred_boxes.mean(
+                dim=0) * self.params.search_size / resize_factor).tolist()  # (cx, cy, w, h) [0,1]
+            # get the final box result
+            self.state = clip_box(self.map_box_back(pred_box, resize_factor), H, W, margin=10)
+            # ***********************************************************  Center 头 ***************************************************
+            # ***********************************************************  Corner 头 ***************************************************
+            # pred_boxes = out_dict['pred_boxes']
+            # pred_boxes = pred_boxes.view(-1, 4)
+            # pred_box = (pred_boxes.mean(
+            #     dim=0) * self.params.search_size / resize_factor).tolist()  # (cx, cy, w, h) [0,1]
+            # # get the final box result
+            # self.state = clip_box(self.map_box_back(pred_box, resize_factor), H, W, margin=10)
+            # ***********************************************************  Corner 头 ***************************************************
+
+        if self.cfg.MODEL.T == 2:
+            T, H, W, _ = image.shape
+            self.frame_id += 1
+            x_patch_arr = [0.0, 0.0]
+            x_amask_arr = [0.0, 0.0]
+            search = [0.0, 0.0]
+
+            x_patch_arr[0], resize_factor, x_amask_arr[0] = sample_target(image[0], self.state, self.params.search_factor,
+                                                                    output_sz=self.params.search_size)
+            x_patch_arr[1], resize_factor, x_amask_arr[1] = sample_target(image[1], self.state, self.params.search_factor,
+                                                                    output_sz=self.params.search_size)
+
+            search[0] = self.preprocessor.process(x_patch_arr[0], x_amask_arr[0])
+            search[1] = self.preprocessor.process(x_patch_arr[1], x_amask_arr[1])
+
+            tensor = torch.cat([search[0].tensors.unsqueeze(0), search[1].tensors.unsqueeze(0)], dim=0)
+            mask = torch.cat([search[0].mask.unsqueeze(0), search[1].mask.unsqueeze(0)], dim=0)
+
+            search = NestedTensor(tensor, mask)
+
+            # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+            with torch.no_grad():
+                x_dict = search
+                # merge the template and the search
+                # run the transformer
+                out_dict = self.network.forward(
+                    template=self.z_dict1.tensors, search=x_dict.tensors)
+
+            # ***********************************************************  Center 头 ***************************************************
+
+            # add hann windows
+            pred_score_map = out_dict['score_map']
+
+            # response = self.output_window * pred_score_map
+            response = pred_score_map
+
+
+            pred_boxes = self.network.box_head.cal_bbox(response, out_dict['size_map'], out_dict['offset_map'])
+            pred_boxes = pred_boxes.view(-1, 4)
+            # Baseline: Take the mean of all pred boxes as the final result
+            pred_box = (pred_boxes.mean(
+                dim=0) * self.params.search_size / resize_factor).tolist()  # (cx, cy, w, h) [0,1]
+            # get the final box result
+            self.state = clip_box(self.map_box_back(pred_box, resize_factor), H, W, margin=10)
+            # ***********************************************************  Center 头 ***************************************************
+            # ***********************************************************  Corner 头 ***************************************************
+            # pred_boxes = out_dict['pred_boxes']
+            # pred_boxes = pred_boxes.view(-1, 4)
+            # pred_box = (pred_boxes.mean(
+            #     dim=0) * self.params.search_size / resize_factor).tolist()  # (cx, cy, w, h) [0,1]
+            # # get the final box result
+            # self.state = clip_box(self.map_box_back(pred_box, resize_factor), H, W, margin=10)
+            # ***********************************************************  Corner 头 ***************************************************
+
+        if self.cfg.MODEL.T == 4:
+            T, H, W, _ = image.shape
+            self.frame_id += 1
+
+            # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            x_patch_arr = [0.0, 0.0, 0.0, 0.0]
+            x_amask_arr = [0.0, 0.0, 0.0, 0.0]
+            search = [0.0, 0.0, 0.0, 0.0]
+
+            x_patch_arr[0], resize_factor, x_amask_arr[0] = sample_target(image[0], self.state, self.params.search_factor,
+                                                                    output_sz=self.params.search_size)
+            x_patch_arr[1], resize_factor, x_amask_arr[1] = sample_target(image[1], self.state, self.params.search_factor,
+                                                                    output_sz=self.params.search_size)
+            x_patch_arr[2], resize_factor, x_amask_arr[2] = sample_target(image[2], self.state, self.params.search_factor,
+                                                                    output_sz=self.params.search_size)
+            x_patch_arr[3], resize_factor, x_amask_arr[3] = sample_target(image[3], self.state, self.params.search_factor,
+                                                                    output_sz=self.params.search_size)
+            search[0] = self.preprocessor.process(x_patch_arr[0], x_amask_arr[0])
+            search[1] = self.preprocessor.process(x_patch_arr[1], x_amask_arr[1])
+            search[2] = self.preprocessor.process(x_patch_arr[2], x_amask_arr[2])
+            search[3] = self.preprocessor.process(x_patch_arr[3], x_amask_arr[3])
+
+
+
+            tensor = torch.cat([search[0].tensors.unsqueeze(0), search[1].tensors.unsqueeze(0), search[2].tensors.unsqueeze(0), search[3].tensors.unsqueeze(0)], dim=0)
+            mask = torch.cat([search[0].mask.unsqueeze(0), search[1].mask.unsqueeze(0), search[2].mask.unsqueeze(0), search[3].mask.unsqueeze(0)], dim=0)
+
+            search = NestedTensor(tensor, mask)
+
+            # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+            with torch.no_grad():
+                x_dict = search
+                # merge the template and the search
+                # run the transformer
+                out_dict = self.network.forward(
+                    template=self.z_dict1.tensors, search=x_dict.tensors)
+
+            # ***********************************************************  Center 头 ***************************************************
+
+            # add hann windows
+            pred_score_map = out_dict['score_map']
+
+            # response = self.output_window * pred_score_map
+            response = pred_score_map
+
+
+            pred_boxes = self.network.box_head.cal_bbox(response, out_dict['size_map'], out_dict['offset_map'])
+            pred_boxes = pred_boxes.view(-1, 4)
+            # Baseline: Take the mean of all pred boxes as the final result
+            pred_box = (pred_boxes.mean(
+                dim=0) * self.params.search_size / resize_factor).tolist()  # (cx, cy, w, h) [0,1]
+            # get the final box result
+            self.state = clip_box(self.map_box_back(pred_box, resize_factor), H, W, margin=10)
+            # ***********************************************************  Center 头 ***************************************************
+            # ***********************************************************  Corner 头 ***************************************************
+            # pred_boxes = out_dict['pred_boxes']
+            # pred_boxes = pred_boxes.view(-1, 4)
+            # pred_box = (pred_boxes.mean(
+            #     dim=0) * self.params.search_size / resize_factor).tolist()  # (cx, cy, w, h) [0,1]
+            # # get the final box result
+            # self.state = clip_box(self.map_box_back(pred_box, resize_factor), H, W, margin=10)
+            # ***********************************************************  Corner 头 ***************************************************
 
 
 
@@ -147,6 +350,10 @@ class SDTrack(BaseTracker):
                     "all_boxes": all_boxes_save}
         else:
             return {"target_bbox": self.state}
+        
+            
+
+
 
     def map_box_back(self, pred_box: list, resize_factor: float):
         cx_prev, cy_prev = self.state[0] + 0.5 * self.state[2], self.state[1] + 0.5 * self.state[3]
