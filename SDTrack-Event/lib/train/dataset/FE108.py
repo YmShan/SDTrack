@@ -123,13 +123,21 @@ class EOTB(BaseVideoDataset):
         img_path = self._get_frame_path(seq_path, frame_id)
         return self.image_loader(img_path)  # 加载图像
 
-    def _get_event(self, seq_path, frame_id):
-        # 获取事件数据，加载三帧图像
-        # event1 = os.path.join(seq_path, 'dvs', 'frame{:04}.png'.format(frame_id))
-        event1 = os.path.join(seq_path, 'inter1_stack_3008', '{:04}_1.png'.format(frame_id + 1))
+    def _get_event(self, seq_path, frame_id, cfg=None):
+        if cfg.MODEL.T == 1:
+            event1 = os.path.join(seq_path, 'inter1_stack_3008', '{:04}_1.png'.format(frame_id + 1))
+            return self.image_loader(event1)  # 返回三个事件图像
+        elif cfg.MODEL.T == 2:
+            event1 = os.path.join(seq_path, 'inter2_stack_3008', '{:04}_1.png'.format(frame_id + 1))
+            event2 = os.path.join(seq_path, 'inter2_stack_3008', '{:04}_2.png'.format(frame_id + 1))
+            return self.image_loader(event1), self.image_loader(event2)
+        elif cfg.MODEL.T == 4:
+            event1 = os.path.join(seq_path, 'inter4_stack_3008', '{:04}_1.png'.format(frame_id + 1))
+            event2 = os.path.join(seq_path, 'inter4_stack_3008', '{:04}_2.png'.format(frame_id + 1))
+            event3 = os.path.join(seq_path, 'inter4_stack_3008', '{:04}_3.png'.format(frame_id + 1))
+            event4 = os.path.join(seq_path, 'inter4_stack_3008', '{:04}_4.png'.format(frame_id + 1))
+            return self.image_loader(event1), self.image_loader(event2), self.image_loader(event3), self.image_loader(event4)
 
-        return self.image_loader(event1)  # 返回三个事件图像
-        # return self.image_loader(event1, rgb='2_channel_rgb')
 
     def _get_frames(self, seq_id):
         # 获取给定序列ID的帧图像
@@ -167,14 +175,13 @@ class EOTB(BaseVideoDataset):
 
         return {'bbox': bbox, 'valid': valid, 'visible': visible}  # 返回序列信息
 
-    def get_frames(self, seq_id=None, frame_ids=None, anno=None):
+    def get_frames(self, seq_id=None, frame_ids=None, anno=None, cfg=None):
         # 获取多帧图像和事件
         seq_path = self._get_sequence_path(seq_id)
         obj_meta = self.sequence_meta_info[self.sequence_list[seq_id]]  # 获取对象元信息
 
         # frame_list = [self._get_frame(seq_path, f_id) for f_id in frame_ids]  # 获取帧图像
-        event_list = [self._get_event(seq_path, f_id) for f_id in frame_ids]  # 获取事件数据
-
+        event_list = [self._get_event(seq_path, f_id, cfg) for f_id in frame_ids]  # 获取事件数据
         if anno is None:
             anno = self.get_sequence_info(seq_id)  # 获取注释信息
 
@@ -187,5 +194,4 @@ class EOTB(BaseVideoDataset):
         # print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
         # print(event_list[0][0].shape)           # [260, 346, 2]
         # print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-
         return event_list, anno_frames, obj_meta  # 返回事件列表、注释和对象元信息          [[[260, 346, 2],[],[]]]
