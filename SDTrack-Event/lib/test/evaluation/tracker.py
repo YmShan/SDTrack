@@ -15,6 +15,12 @@ from lib.models.SDTrack.SDTrack_tiny_model import MultiSpike
 import torch
 from lib.models.SDTrack.SDTrack_tiny_model import MS_Attention_linear
 # from lib.models.SDTrack.SDTrack_base_model import MS_Attention_linear
+from lib.models.SDTrack.SDTrack_tiny_LIF_T4D1_model import LIF
+
+def reset_LIF_layers(model):
+    for name, module in model.named_modules():
+        if isinstance(module, LIF):  # 检查是否是 LIF 层
+            module.to_zero()
 
 def trackerlist(name: str, parameter_name: str, dataset_name: str, run_ids = None, display_name: str = None,
                 result_only=False):
@@ -40,7 +46,7 @@ class Tracker:
     """
 
     def __init__(self, name: str, parameter_name: str, dataset_name: str, run_id: int = None, display_name: str = None,
-                 result_only=False):
+                 result_only=False, cfg=None):
         assert run_id is None or isinstance(run_id, int)
 
         self.name = name
@@ -48,6 +54,7 @@ class Tracker:
         self.dataset_name = dataset_name
         self.run_id = run_id
         self.display_name = display_name
+        self.cfg = cfg
 
         env = env_settings()
         if self.run_id is None:
@@ -91,6 +98,10 @@ class Tracker:
         tracker = self.create_tracker(params)
 
         output = self._track_sequence(tracker, seq, init_info)
+
+        if self.cfg.MODEL.NEURON == 'LIF':
+            reset_LIF_layers(tracker.network)
+
         return output
 
     def _track_sequence(self, tracker, seq, init_info):
@@ -148,6 +159,10 @@ class Tracker:
             if len(seq.ground_truth_rect) > 1:
                 info['gt_bbox'] = seq.ground_truth_rect[frame_num]
             out = tracker.track(image, info)
+
+            if self.cfg.MODEL.NEURON == 'LIF':
+                reset_LIF_layers(tracker.network)
+
             prev_output = OrderedDict(out)
             _store_outputs(out, {'time': time.time() - start_time})
 
@@ -346,14 +361,66 @@ class Tracker:
         params = param_module.parameters(self.parameter_name)
         return params
 
-    def _read_image(self, image_file: str):
-        if isinstance(image_file, str):
-            im = cv.imread(image_file)
-            return cv.cvtColor(im, cv.COLOR_BGR2RGB)
-        elif isinstance(image_file, list) and len(image_file) == 2:
-            return decode_img(image_file[0], image_file[1])
-        else:
-            raise ValueError("type of image_file should be str or list")
+    def _read_image(self, image_file: str):        
+        if self.cfg.MODEL.T == 1:
+            if isinstance(image_file, str):
+                im = cv.imread(image_file)
+                return cv.cvtColor(im, cv.COLOR_BGR2RGB)
+            elif isinstance(image_file, list) and len(image_file) == 2:
+                return decode_img(image_file[0], image_file[1])
+            else:
+                raise ValueError("type of image_file should be str or list")
 
+        elif self.cfg.MODEL.T == 2:
+            event = [image_file.replace('inter1_stack_3008', 'inter2_stack_3008'), '']
+            event[1] = event[0][:-5] + '2.png'              # 格式类似 /test/bike222/inter2_stack_3008/0076_2.png
+            if not os.path.exists(event[1]):
+                event[1] = image_file.replace('inter1_stack_3008', 'inter2_stack_3008')
+            image = []
+            for i in range(len(event)):
+                im = cv.imread(event[i])
+                if i > 0:
+                    try:
+                        im = cv.cvtColor(im, cv.COLOR_BGR2RGB)
+                    except Exception as e:
+                        im = cv.imread(event[0])
+                        im = cv.cvtColor(im, cv.COLOR_BGR2RGB)  # 将图像从 BGR 转换为 RGB
+                else:
+                    im = cv.cvtColor(im, cv.COLOR_BGR2RGB)
 
+                image.append(im)
+                image[i] = image[i][None, :]
+            image = np.concatenate((image[0], image[1]), axis=0)          
 
+            return image
+
+        elif self.cfg.MODEL.T == 4:
+            event = [image_file.replace('inter1_stack_3008', 'inter4_stack_3008'), '', '', '']
+            event[1] = event[0][:-5] + '2.png'
+            event[2] = event[0][:-5] + '3.png'
+            event[3] = event[0][:-5] + '4.png'
+            if not os.path.exists(event[1]):
+                event[1] = image_file.replace('inter1_stack_3008', 'inter4_stack_3008')
+            if not os.path.exists(event[2]):
+                event[2] = image_file.replace('inter1_stack_3008', 'inter4_stack_3008')
+            if not os.path.exists(event[3]):
+                event[3] = image_file.replace('inter1_stack_3008', 'inter4_stack_3008')
+            
+            image = []
+            for i in range(len(event)):
+                im = cv.imread(event[i])
+                if i > 0:
+                    try:
+                        im = cv.cvtColor(im, cv.COLOR_BGR2RGB)
+                    except Exception as e:
+                        im = cv.imread(event[0])
+                        im = cv.cvtColor(im, cv.COLOR_BGR2RGB)  # 将图像从 BGR 转换为 RGB
+                else:
+                    im = cv.cvtColor(im, cv.COLOR_BGR2RGB)
+
+                image.append(im)
+                image[i] = image[i][None, :]
+
+            image = np.concatenate((image[0], image[1], image[2], image[3]), axis=0)          
+
+            return image
