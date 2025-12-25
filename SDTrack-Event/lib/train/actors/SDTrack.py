@@ -5,6 +5,12 @@ import torch
 from lib.utils.merge import merge_template_search
 from ...utils.heapmap_utils import generate_heatmap
 from ...utils.ce_utils import generate_mask_cond, adjust_keep_rate
+from ...models.SDTrack.SDTrack_tiny_LIF_T4D1_model import LIF
+
+def reset_LIF_layers(model):
+    for name, module in model.named_modules():
+        if isinstance(module, LIF):  # 检查是否是 LIF 层
+            module.to_zero()
 
 class SDTrackActor(BaseActor):
     """ Actor for training SDTrack models """
@@ -15,6 +21,8 @@ class SDTrackActor(BaseActor):
         self.settings = settings
         self.bs = self.settings.batchsize  # batch size
         self.cfg = cfg
+
+
 
     def __call__(self, data):
         """
@@ -39,34 +47,53 @@ class SDTrackActor(BaseActor):
         assert len(data['template_images']) == 1
         assert len(data['search_images']) == 1
 
-        template_list = []
-        for i in range(self.settings.num_template):
-            template_img_i = data['template_images'][i].view(-1,
-                                                             *data['template_images'].shape[2:])  # (batch, 3, 128, 128)
-            # template_att_i = data['template_att'][i].view(-1, *data['template_att'].shape[2:])  # (batch, 128, 128)
-            template_list.append(template_img_i)
+        if self.cfg.MODEL.NEURON == 'ILIF' and self.cfg.MODEL.T == 1:
+            template_list = []
+            for i in range(self.settings.num_template):
+                template_img_i = data['template_images'][i].view(-1,
+                                                                *data['template_images'].shape[2:])  # (batch, 3, 128, 128)
+                template_list.append(template_img_i)
 
-        search_img = data['search_images'][0].view(-1, *data['search_images'].shape[2:])  # (batch, 3, 320, 320)
-        # search_att = data['search_att'][0].view(-1, *data['search_att'].shape[2:])  # (batch, 320, 320)
+            search_img = data['search_images'][0].view(-1, *data['search_images'].shape[2:])  # (batch, 3, 320, 320)
 
-        box_mask_z = None
-        ce_keep_rate = None
-        if self.cfg.MODEL.BACKBONE.CE_LOC:
-            box_mask_z = generate_mask_cond(self.cfg, template_list[0].shape[0], template_list[0].device,
-                                            data['template_anno'][0])
 
-            ce_start_epoch = self.cfg.TRAIN.CE_START_EPOCH
-            ce_warm_epoch = self.cfg.TRAIN.CE_WARM_EPOCH
-            ce_keep_rate = adjust_keep_rate(data['epoch'], warmup_epochs=ce_start_epoch,
-                                                total_epochs=ce_start_epoch + ce_warm_epoch,
-                                                ITERS_PER_EPOCH=1,
-                                                base_keep_rate=self.cfg.MODEL.BACKBONE.CE_KEEP_RATIO[0])
+            if len(template_list) == 1:
+                template_list = template_list[0]
+            
+            out_dict = self.net(template=template_list,
+                                search=search_img)
 
-        if len(template_list) == 1:
-            template_list = template_list[0]
-        
-        out_dict = self.net(template=template_list,
-                            search=search_img)
+
+        elif self.cfg.MODEL.NEURON == 'LIF' and self.cfg.MODEL.T == 4:
+            t0 = data['template_images'][0][0]          # [C, B, h, w]
+            t1 = data['template_images'][0][1]
+            t2 = data['template_images'][0][2]
+            t3 = data['template_images'][0][3]
+            data['template_images'] = torch.stack((t0, t1, t2, t3), 0).permute(0, 2, 1, 3, 4).contiguous()
+
+            s0 = data['search_images'][0][0]
+            s1 = data['search_images'][0][1]
+            s2 = data['search_images'][0][2]
+            s3 = data['search_images'][0][3]
+            data['search_images'] = torch.stack((s0, s1, s2, s3), 0).permute(0, 2, 1, 3, 4).contiguous()
+
+            
+            out_dict = self.net(template=data['template_images'],
+                                search=data['search_images'])
+            reset_LIF_layers(self.net)
+
+        elif self.cfg.MODEL.NEURON == 'ILIF' and self.cfg.MODEL.T == 2:
+            t0 = data['template_images'][0][0]          # [C, B, h, w]
+            t1 = data['template_images'][0][1]
+            data['template_images'] = torch.stack((t0, t1), 0).permute(0, 2, 1, 3, 4).contiguous()
+
+            s0 = data['search_images'][0][0]
+            s1 = data['search_images'][0][1]
+            data['search_images'] = torch.stack((s0, s1), 0).permute(0, 2, 1, 3, 4).contiguous()
+
+            
+            out_dict = self.net(template=data['template_images'],
+                                search=data['search_images'])
 
         return out_dict
 
