@@ -57,7 +57,8 @@ def build_dataloaders(cfg, settings):
                                                        mode='sequence',
                                                        transform=transform_train,
                                                        joint_transform=transform_joint,
-                                                       settings=settings)
+                                                       settings=settings,
+                                                       cfg=cfg)
 
     data_processing_val = processing.STARKProcessing(search_area_factor=search_area_factor,
                                                      output_sz=output_sz,
@@ -66,7 +67,8 @@ def build_dataloaders(cfg, settings):
                                                      mode='sequence',
                                                      transform=transform_val,
                                                      joint_transform=transform_joint,
-                                                     settings=settings)
+                                                     settings=settings,
+                                                     cfg=cfg)
 
     # Train sampler and loader
     settings.num_template = getattr(cfg.DATA.TEMPLATE, "NUMBER", 1)
@@ -79,7 +81,7 @@ def build_dataloaders(cfg, settings):
                                             samples_per_epoch=cfg.DATA.TRAIN.SAMPLE_PER_EPOCH,
                                             max_gap=cfg.DATA.MAX_SAMPLE_INTERVAL, num_search_frames=settings.num_search,
                                             num_template_frames=settings.num_template, processing=data_processing_train,
-                                            frame_sample_mode=sampler_mode, train_cls=train_cls)
+                                            frame_sample_mode=sampler_mode, train_cls=train_cls, cfg=cfg)
 
     train_sampler = DistributedSampler(dataset_train) if settings.local_rank != -1 else None
     shuffle = False if settings.local_rank != -1 else True
@@ -93,7 +95,7 @@ def build_dataloaders(cfg, settings):
                                           samples_per_epoch=cfg.DATA.VAL.SAMPLE_PER_EPOCH,
                                           max_gap=cfg.DATA.MAX_SAMPLE_INTERVAL, num_search_frames=settings.num_search,
                                           num_template_frames=settings.num_template, processing=data_processing_val,
-                                          frame_sample_mode=sampler_mode, train_cls=train_cls)
+                                          frame_sample_mode=sampler_mode, train_cls=train_cls, cfg=cfg)
     val_sampler = DistributedSampler(dataset_val) if settings.local_rank != -1 else None
     loader_val = LTRLoader('val', dataset_val, training=False, batch_size=cfg.TRAIN.BATCH_SIZE,
                            num_workers=cfg.TRAIN.NUM_WORKER, drop_last=True, stack_dim=1, sampler=val_sampler,
