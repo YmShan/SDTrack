@@ -22,7 +22,7 @@ class TrackingSampler(torch.utils.data.Dataset):
 
     def __init__(self, datasets, p_datasets, samples_per_epoch, max_gap,
                  num_search_frames, num_template_frames=1, processing=no_processing, frame_sample_mode='causal',
-                 train_cls=False, pos_prob=0.5):
+                 train_cls=False, pos_prob=0.5, cfg=None):
         """
         args:
             datasets - List of datasets to be used for training
@@ -53,6 +53,8 @@ class TrackingSampler(torch.utils.data.Dataset):
         self.num_template_frames = num_template_frames
         self.processing = processing
         self.frame_sample_mode = frame_sample_mode
+        self.cfg = cfg
+
 
     def __len__(self):
         return self.samples_per_epoch
@@ -146,10 +148,15 @@ class TrackingSampler(torch.utils.data.Dataset):
                 template_frame_ids = [1] * self.num_template_frames
                 search_frame_ids = [1] * self.num_search_frames
             try:
-                template_frames, template_anno, meta_obj_train = dataset.get_frames(seq_id, template_frame_ids, seq_info_dict)
-                search_frames, search_anno, meta_obj_test = dataset.get_frames(seq_id, search_frame_ids, seq_info_dict)
+                template_frames, template_anno, meta_obj_train = dataset.get_frames(seq_id, template_frame_ids, seq_info_dict, self.cfg)
+                search_frames, search_anno, meta_obj_test = dataset.get_frames(seq_id, search_frame_ids, seq_info_dict, self.cfg)
 
-                H, W, _ = template_frames[0].shape
+                if self.cfg.MODEL.NEURON == 'ILIF' and self.cfg.MODEL.T == 1:
+                    H, W, _ = template_frames[0].shape
+                else:
+                    H, W, _ = template_frames[0][0].shape
+                
+                
                 template_masks = template_anno['mask'] if 'mask' in template_anno else [torch.zeros((H, W))] * self.num_template_frames
                 search_masks = search_anno['mask'] if 'mask' in search_anno else [torch.zeros((H, W))] * self.num_search_frames
 
@@ -207,7 +214,7 @@ class TrackingSampler(torch.utils.data.Dataset):
                 # "try" is used to handle trackingnet data failure
                 # get images and bounding boxes (for templates)
                 template_frames, template_anno, meta_obj_train = dataset.get_frames(seq_id, template_frame_ids,
-                                                                                    seq_info_dict)
+                                                                                    seq_info_dict, self.cfg)
                 H, W, _ = template_frames[0].shape
                 template_masks = template_anno['mask'] if 'mask' in template_anno else [torch.zeros(
                     (H, W))] * self.num_template_frames
@@ -215,7 +222,7 @@ class TrackingSampler(torch.utils.data.Dataset):
                 # positive samples
                 if random.random() < self.pos_prob:
                     label = torch.ones(1,)
-                    search_frames, search_anno, meta_obj_test = dataset.get_frames(seq_id, search_frame_ids, seq_info_dict)
+                    search_frames, search_anno, meta_obj_test = dataset.get_frames(seq_id, search_frame_ids, seq_info_dict, self.cfg)
                     search_masks = search_anno['mask'] if 'mask' in search_anno else [torch.zeros(
                         (H, W))] * self.num_search_frames
                 # negative samples
@@ -227,7 +234,7 @@ class TrackingSampler(torch.utils.data.Dataset):
                             search_frames, search_anno, meta_obj_test = self.get_one_search()
                         else:
                             search_frames, search_anno, meta_obj_test = dataset.get_frames(seq_id, search_frame_ids,
-                                                                                           seq_info_dict)
+                                                                                           seq_info_dict, self.cfg)
                             search_anno["bbox"] = [self.get_center_box(H, W)]
                     else:
                         search_frames, search_anno, meta_obj_test = self.get_one_search()
@@ -293,7 +300,7 @@ class TrackingSampler(torch.utils.data.Dataset):
         else:
             search_frame_ids = [1]
         # get the image, bounding box and other info
-        search_frames, search_anno, meta_obj_test = dataset.get_frames(seq_id, search_frame_ids, seq_info_dict)
+        search_frames, search_anno, meta_obj_test = dataset.get_frames(seq_id, search_frame_ids, seq_info_dict, self.cfg)
 
         return search_frames, search_anno, meta_obj_test
 
