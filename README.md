@@ -32,6 +32,9 @@ At **NeurIPS 2026**, **4** accepted papers ([NeurIPS-1](https://arxiv.org/pdf/25
 
 A neuromorphic tracking system built upon the DAVIS346 camera, the SDTrack pipeline, and Lynxi chips was showcased at the **SLAI (Shenzhen Loop Area Institute) – LIMA (Language, Intelligence and Machines) Center Open Day**. [Link](https://mp.weixin.qq.com/s/nXbek5t8Wg3o_vyoZt1iNQ)
 
+***2025-12-28***
+
+The same neuromorphic tracking system was showcased at **the 5th Brain Science Frontier and Industry Conference and 2025 Shenzhen Brain-Computer Interface and Human-Machine Interaction Technology Expo**.
 
 
 ## Tracker Overview
