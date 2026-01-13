@@ -22,7 +22,7 @@ SDTrack code is now available.
 
 ***2025-08-14*** 
 
-:trophy: :trophy: :trophy: We extended SDTrack to spiking cameras, introduced three datasets generated using spiking-camera simulators, and provided the first tracking baseline for spiking cameras. This work received the **Best Dataset & Benchmark Award** (sole winner) in the **IJCAI 2025 SpikeCV–Wuji Challenge (Dataset & Benchmark Track)**, along with a **$1,500 prize**. We thank the SpikeCV organizing committee.
+:trophy: :trophy: :trophy: We extended SDTrack to spiking cameras, introduced three datasets generated using spiking-camera simulators, and provided the first tracking baseline for spiking cameras. This work received the **Best Dataset & Benchmark Award** (sole winner) in the **IJCAI 2025 SpikeCV–Wuji Challenge (Dataset & Benchmark Track)**, along with a **$1,500 prize**. We thank the SpikeCV organizing committee. [Link](https://mp.weixin.qq.com/s/vOa6_tlO2NuROi7Gz1_FeA)
 
 ***2025-09-19*** 
 
