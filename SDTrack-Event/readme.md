@@ -9,7 +9,7 @@ You can download the compressed package of the environment [here](https://drive.
 | VisEvent          |https://pan.baidu.com/s/1TxAHrxap9NFRnPmffgkB6Q?pwd=SDTk (Baidu Netdisk)|
 | FELT          |he data is currently stored on Aliyun Drive and cannot be shared at the moment. A download link will be provided shortly.|
 
-PS:Although I have a Google Drive subscription, the dataset is too large to transfer to Google Drive at the moment. I kindly ask researchers outside of China to wait a bit longer while I work on finding a solution.
+PS:Although I have a Google Drive subscription, the dataset is too large to transfer to Google Drive at the moment. I kindly ask researchers outside of China to wait a bit longer while I work on finding a solution. If there is any suspicion of copyright infringement, please contact me immediately, and I will apologize and remove the corresponding data.
 
 You can also choose to continue using our recommended script-based processing method:
 
