@@ -5,8 +5,8 @@ You can download the compressed package of the environment [here](https://drive.
 # News(01-23-2026) Our reprocessed complete dataset is now accessible via Baidu Netdisk. In order to expedite the download process, the event source files (.AEDAT4) have been removed.
 | Dataset        | Link        |
 |----------------|----------------|
-| FE108          |https://pan.baidu.com/s/1V2yIIUgJQt18TCJcS9L4Sg?pwd=SDTk (Baidu Cloud)|
-| VisEvent          |https://pan.baidu.com/s/1TxAHrxap9NFRnPmffgkB6Q?pwd=SDTk (Baidu Cloud)|
+| FE108          |https://pan.baidu.com/s/1V2yIIUgJQt18TCJcS9L4Sg?pwd=SDTk (Baidu Netdisk)|
+| VisEvent          |https://pan.baidu.com/s/1TxAHrxap9NFRnPmffgkB6Q?pwd=SDTk (Baidu Netdisk)|
 | FELT          |he data is currently stored on Aliyun Drive and cannot be shared at the moment. A download link will be provided shortly.|
 
 PS:Although I have a Google Drive subscription, the dataset is too large to transfer to Google Drive at the moment. I kindly ask researchers outside of China to wait a bit longer while I work on finding a solution.
