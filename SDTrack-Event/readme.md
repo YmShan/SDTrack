@@ -2,6 +2,17 @@
 You can download the compressed package of the environment [here](https://drive.google.com/file/d/1bHu7CbM6TiSXNXnMbfj8W-eUNvO_4wyA/view?usp=sharing). Or manually install the environment using [create_SDTrack_env.sh](https://github.com/YmShan/SDTrack/blob/main/create_SDTrack_env.sh)
 
 ## Data Prepare
+# News(01-23-2026) Our reprocessed complete dataset is now accessible via Baidu Netdisk. In order to expedite the download process, the event source files (.AEDAT4) have been removed.
+| Dataset        | Link        |
+|----------------|----------------|
+| FE108          |https://pan.baidu.com/s/1V2yIIUgJQt18TCJcS9L4Sg?pwd=SDTk (Baidu Cloud)|
+| VisEvent          |https://pan.baidu.com/s/1TxAHrxap9NFRnPmffgkB6Q?pwd=SDTk (Baidu Cloud)|
+| FELT          |he data is currently stored on Aliyun Drive and cannot be shared at the moment. A download link will be provided shortly.|
+
+PS:Although I have a Google Drive subscription, the dataset is too large to transfer to Google Drive at the moment. I kindly ask researchers outside of China to wait a bit longer while I work on finding a solution.
+
+You can also choose to continue using our recommended script-based processing method:
+
 1. The processing of the FELT dataset is relatively intricate; thus, we recommend utilizing only the FE108 and VisEvent datasets at this stage. Results on the COESOT dataset will be provided in our forthcoming updates.
 2. Download [FE108](https://zhangjiqing.com/dataset/), [FELT](https://github.com/Event-AHU/FELT_SOT_Benchmark) and [VisEvent](https://github.com/wangxiao5791509/VisEvent_SOT_Benchmark).
 3. Download the datasets processing scripts for the three datasets ([FE108](https://drive.google.com/file/d/1OXMXYbRsQIoxMujkJ-K3cxdfpRog5Ca7/view?usp=sharing), [FELT](https://drive.google.com/file/d/1SApVrzb90sP_D8wYFOpOMwsmCeOMMXhG/view?usp=sharing) and [VISEVENT](https://drive.google.com/file/d/17zm3HjA6iPLmY0chKRwMYEmxUD1IAosG/view?usp=sharing)).
