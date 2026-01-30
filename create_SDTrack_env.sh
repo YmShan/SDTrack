@@ -1,6 +1,6 @@
 conda create -n SDTrack python=3.8
 conda activate SDTrack
-conda install pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=10.2 -c pytorch
+pip install torch==1.10.0+cu113 torchvision==0.11.0+cu113 torchaudio==0.10.0 --extra-index-url https://download.pytorch.org/whl/cu113
 echo "****************** Installing yaml ******************"
 pip install PyYAML
 
@@ -80,7 +80,7 @@ pip install wandb
 echo ""
 echo ""
 echo "****************** Installing timm ******************"
-pip install timm==1.0.9
+pip install timm==0.5.4
 pip install torchinfo
 pip install einops
 pip install fvcore
