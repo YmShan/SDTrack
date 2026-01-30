@@ -32,7 +32,7 @@ def local_env_settings():
     settings.vot22_path = '/data/dataset/vot2022'
     settings.vot_path = '/data/dataset/VOT2019'
     settings.youtubevos_dir = ''
-    settings.eotb_path = '/data/dataset/FE108_3C/test'
+    settings.eotb_path = '/data/dataset/FE108/test'
     settings.visevent_path = '/data/dataset/VisEvent/test/'
     settings.felt_path = '/data/dataset/FELT/test/'
     return settings
