@@ -81,10 +81,36 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 ```
 
-### 4. Error with newer PyTorch versions: `weights_only` parameter in `torch.load`
+### 4. Error with newer PyTorch versions: `weights_only` parameter in `torch.load`.
 ```python
 [rank0]:        (1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
 [rank0]:        (2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
 [rank0]:        WeightsUnpickler error: Unsupported global: GLOBAL argparse.Namespace was not an allowed global by default. Please use `torch.serialization.add_safe_globals([argparse.Namespace])` or the `torch.serialization.safe_globals([argparse.Namespace])` context manager to allowlist this global if you trust this class/function.
 ```
 Solution: Add the parameter `weights_only=False` to all `torch.load` functions.
+
+### 5. Errors Encountered After Setting Up the Environment on New GPU Models.
+When using an environment similar to that of the 4090 on H100 GPU for training, there is an error. It seems to be due to an incompatibility between PyTorch version and H100 GPU. 
+```python
+Traceback (most recent call last):
+  File "lib/train/run_training.py", line 110, in <module>
+    main()
+  File "lib/train/run_training.py", line 102, in main
+    run_training(args.script, args.config, cudnn_benchmark=args.cudnn_benchmark,
+  File "lib/train/run_training.py", line 76, in run_training
+    expr_func(settings)
+  File "/data/xxx/xxx/SDTrack/lib/train/../../lib/train/train_script.py", line 63, in run
+    net = DDP(net, device_ids=[settings.local_rank], find_unused_parameters=True)
+  File "/data/xxx/xxx/anaconda3/envs/SDTrack-old/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 580, in __init__
+    self._sync_params_and_buffers(authoritative_rank=0)
+  File "/data/xxx/xxx/anaconda3/envs/SDTrack-old/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 597, in _sync_params_and_buffers
+    self._distributed_broadcast_coalesced(
+  File "/data/xxx/xxx/anaconda3/envs/SDTrack-old/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 1334, in _distributed_broadcast_coalesced
+    dist._broadcast_coalesced(
+RuntimeError: CUDA error: invalid device function
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+```
+Additionally, after simple testing, it was found that installing PyTorch on A800 server with the environment provided by this project results in errors, which are suspected to be related to specific configurations and versions.
+
+The `create_SDTrack_env.sh` script provided in this project is derived from the actual running environment. If you encounter any environmental issues, please feel free to raise an issue, and I will assist in resolving them.
