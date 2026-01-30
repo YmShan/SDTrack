@@ -22,6 +22,6 @@ class EnvironmentSettings:
         self.msra10k_dir = ''
         self.davis_dir = ''
         self.youtubevos_dir = ''
-        self.eotb_dir_train = '/data/dataset/FE108_3C/train'
+        self.eotb_dir_train = '/data/dataset/FE108/train'
         self.visevent_train = '/data/dataset/VisEvent/train/'
         self.felt_train = '/data/dataset/FELT/train/'
