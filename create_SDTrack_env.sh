@@ -80,7 +80,7 @@ pip install wandb
 echo ""
 echo ""
 echo "****************** Installing timm ******************"
-pip install timm
+pip install timm==1.0.9
 pip install torchinfo
 pip install einops
 pip install fvcore
