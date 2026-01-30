@@ -1,6 +1,6 @@
 conda create -n SDTrack python=3.8
 conda activate SDTrack
-conda install pytorch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0  pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=10.2 -c pytorch
 echo "****************** Installing yaml ******************"
 pip install PyYAML
 
