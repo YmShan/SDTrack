@@ -28,6 +28,10 @@ A neuromorphic tracking system built upon the DAVIS346 camera, the SDTrack pipel
 
 The same neuromorphic tracking system was showcased at **the 5th Brain Science Frontier and Industry Conference and 2025 Shenzhen Brain-Computer Interface and Human-Machine Interaction Technology Expo**.
 
+***2026-02-21***
+
+SDTrack has been accepted by **CVPR 2026**.
+
 ## We establish comprehensive benchmarks for event-based camera and spiking-camera tracking.
 
 For the **event-based camera** component, please refer to [SDTrack-Event](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Event/readme.md).
