@@ -32,6 +32,10 @@ The same neuromorphic tracking system was showcased at **the 5th Brain Science F
 
 SDTrack has been accepted by **CVPR 2026**.
 
+***2026-04-09***
+
+CVPR Oral!!!
+
 ## We establish comprehensive benchmarks for event-based camera and spiking-camera tracking.
 
 For the **event-based camera** component, please refer to [SDTrack-Event](https://github.com/YmShan/SDTrack/blob/main/SDTrack-Event/readme.md).
