@@ -125,7 +125,7 @@ It is noteworthy that since we conduct training only once, the test results from
 If MATLAB configuration proves challenging, an alternative testing approach can be utilized `python tracking/analysis_results.py`. However, please note that the test results may exhibit some deviation from our reported results due to differences in integration calculation methods.
 
 
-## SDTrack Event-based Tracking Baseline
+## SDTrack Spike-based Tracking Baseline
 | Methods        | Param. (M)  | Timesteps (T × D) | Power (mJ) | FE108 AUC(%) | FE108 PR(%) | VisEvent AUC(%) | VisEvent PR(%) | COESOT AUC(%) | COESOT PR(%) |Code|Weight|
 |:----------------:|:----------------:|:-------------------:|:------------:|:--------------:|:-------------:|:-------------:|:------------:|:-----------------:|:----------------:|:-:|:-:|
 | SimTrack | 88.64 | 1 × 1            |   93.84    |  78.3     | 52.1   |  62.1   | 44.8  |  69.8     |  50.3  |  [Link](https://drive.google.com/file/d/1-YU8QBLH48BkUvgUmXaQV41_tF-JWInZ/view?usp=sharing) |[Link](https://drive.google.com/file/d/1u8vMDMgxQidAQ2o_HXev0aAV0udB8e-a/view?usp=sharing)|
