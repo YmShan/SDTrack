@@ -34,7 +34,7 @@ SDTrack has been accepted by **CVPR 2026**.
 
 ***2026-04-09***
 
-***CVPR Oral***!!!
+**CVPR Oral** !!!
 
 ## We establish comprehensive benchmarks for event-based camera and spiking-camera tracking.
 
