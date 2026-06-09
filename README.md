@@ -123,7 +123,8 @@ Additionally, after simple testing, it was found that installing PyTorch on A800
 
 The `create_SDTrack_env.sh` script provided in this project is derived from the actual running environment. If you encounter any environmental issues, please feel free to raise an issue, and I will assist in resolving them.
 
-### We thank [@zyj101511](https://github.com/zyj101511) for identifying a minor error in the experimental description section, where we had incorrectly stated the channel dimension of the last stage of SDTrack-Tiny as 320. This has been corrected in the latest version of the paper (https://arxiv.org/abs/2503.08703).
+### Acknowledgements
+We thank [@zyj101511](https://github.com/zyj101511) for identifying a minor error in the experimental description section, where we had incorrectly stated the channel dimension of the last stage of SDTrack-Tiny as 320. This has been corrected in the latest version of the paper (https://arxiv.org/abs/2503.08703).
 
 We also thank the great [PyTracking](https://github.com/visionml/pytracking) and [OSTrack](https://github.com/botaoye/OSTrack) projects, which enabled us to implement our ideas rapidly — even if not rapidly enough.
 
